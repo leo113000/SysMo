@@ -5,12 +5,17 @@
  */
 package monitor;
 
-
-
 /**
  *
- * @author turin
+ * @author Leo J. Vazquez
  */
-public class MonitorLinux extends Monitor {
+public class Networking
+{
+    private NIC nic;
+    
+    public NIC[] getNics()
+    {
+	throw new UnsupportedOperationException("Acción indefinida");
+    }
     
 }

@@ -7,8 +7,10 @@ package monitor;
 
 /**
  *
- * @author turin
+ * @author Leo J. Vazquez
  */
-public class MonitorWindows extends Monitor {
-
+public interface Mother
+{
+    String getMarcaMother();
+    String getModeloMother();
 }
