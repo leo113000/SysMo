@@ -11,7 +11,7 @@ import monitor.Memoria;
  *
  * @author Leo J. Vazquez
  */
-public class LinuxMem implements Memoria
+class LinuxMem implements Memoria
 {
 
     @Override

@@ -11,7 +11,7 @@ import monitor.OS;
  *
  * @author Leo J. Vazquez
  */
-public class LinuxOS implements OS
+class LinuxOS implements OS
 {
 
     @Override

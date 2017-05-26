@@ -11,7 +11,7 @@ import monitor.NIC;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsNIC implements NIC
+class WindowsNIC implements NIC
 {
 
     @Override

@@ -11,7 +11,7 @@ import monitor.Mother;
  *
  * @author Leo J. Vazquez
  */
-public class LinuxMother implements Mother
+class LinuxMother implements Mother
 {
 
     @Override

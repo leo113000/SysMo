@@ -11,7 +11,7 @@ import monitor.CPU;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsCPU implements CPU
+class WindowsCPU implements CPU
 {
 
     @Override

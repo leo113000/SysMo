@@ -11,7 +11,7 @@ import monitor.Mother;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsMother implements Mother
+class WindowsMother implements Mother
 {
 
     @Override

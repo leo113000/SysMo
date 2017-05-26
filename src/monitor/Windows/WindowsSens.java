@@ -11,7 +11,7 @@ import monitor.Sensores;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsSens implements Sensores
+class WindowsSens implements Sensores
 {
 
     @Override

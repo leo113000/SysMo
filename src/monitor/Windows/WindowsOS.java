@@ -11,7 +11,7 @@ import monitor.OS;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsOS implements OS
+class WindowsOS implements OS
 {
 
     @Override

@@ -13,7 +13,7 @@ import monitor.Sensores;
  *
  * @author Leo J. Vazquez
  */
-public class LinuxSens implements Sensores
+class LinuxSens implements Sensores
 {
 
     @Override

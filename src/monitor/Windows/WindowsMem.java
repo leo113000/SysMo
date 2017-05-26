@@ -11,7 +11,7 @@ import monitor.Memoria;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsMem implements Memoria
+class WindowsMem implements Memoria
 {
 
     @Override

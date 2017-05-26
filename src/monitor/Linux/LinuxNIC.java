@@ -11,7 +11,7 @@ import monitor.NIC;
  *
  * @author Leo J. Vazquez
  */
-public class LinuxNIC implements NIC
+class LinuxNIC implements NIC
 {
 
     @Override

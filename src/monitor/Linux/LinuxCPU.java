@@ -11,7 +11,7 @@ import monitor.CPU;
  *
  * @author Leo J. Vazquez
  */
-public class LinuxCPU implements CPU
+class LinuxCPU implements CPU
 {
 
     @Override
