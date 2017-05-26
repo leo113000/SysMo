@@ -9,13 +9,9 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public class Networking
+public interface Networking
 {
-    private NIC nic;
     
-    public NIC[] getNics()
-    {
-	throw new UnsupportedOperationException("Acción indefinida");
-    }
+    public NIC[] getNics();
     
 }

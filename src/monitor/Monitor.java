@@ -15,16 +15,16 @@ public abstract class Monitor
     Memoria memMonitor;
     Mother motherMonitor;
     OS osMonitor;
-    Networking nicMonitor; //Solucionar esto
+    Networking nicMonitor;
     Sensores sensMonitor;
 
-    public Monitor(CPU cpuMonitor, Memoria memMonitor, Mother motherMonitor,/* NIC o Networking, */ OS osMonitor,  Sensores sensMonitor)
+    public Monitor(CPU cpuMonitor, Memoria memMonitor, Mother motherMonitor,Networking nicMonitor, OS osMonitor,  Sensores sensMonitor)
     {
 	this.cpuMonitor = cpuMonitor;
 	this.memMonitor = memMonitor;
 	this.motherMonitor = motherMonitor;
 	this.osMonitor = osMonitor;
-	//this.nicMonitor = nicMonitor;
+	this.nicMonitor = nicMonitor;
 	this.sensMonitor = sensMonitor;
     }
 

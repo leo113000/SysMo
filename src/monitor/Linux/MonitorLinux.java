@@ -40,7 +40,7 @@ public class MonitorLinux extends Monitor {
 
     public MonitorLinux()
     {
-	super(cpuMonitor,memMonitor,motherMonitor,/* NIC o Networking, */ osMonitor,sensMonitor);   
+	super(cpuMonitor,memMonitor,motherMonitor,nicMonitor,osMonitor,sensMonitor);   
 
 	//Pasar los valores a la clase padre con inicializador estático
     }

@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface NIC
+public interface NIC extends Networking
 {
     Integer getIPv4();
     Integer getMACAdress();
