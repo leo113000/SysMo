@@ -28,7 +28,7 @@ public class MonitorDelSistema {
 	Networks leo=new LinuxNetworks();
 	NetworkIF[] leox=leo.getNetworks();
 	String cuerda[]=leox[0].getIPv6addr();
-	System.out.println(cuerda[1]);
+	System.out.println(cuerda[0]);
 	
 	
 	/*
@@ -43,6 +43,14 @@ public class MonitorDelSistema {
             argumentos.put(partesArgumento[0], partesArgumento[1]); //Pongo clave y valor en el map
         }
         
+	
+	///////////////////////BY LEO///////////////////////////////
+	
+	argumentos.put("gui", "true");
+	
+	///////////////////////BY LEO///////////////////////////////
+	
+	
         /*
         Aquí determino haciendo uso de un enum provisto en OSHI
         el sistema operativo actual
