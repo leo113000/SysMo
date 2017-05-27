@@ -6,30 +6,19 @@
 package monitor.Windows;
 
 import monitor.Sensores;
+import oshi.hardware.Sensors;
+import oshi.hardware.platform.windows.WindowsSensors;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class WindowsSens implements Sensores
+public class WindowsSens extends Sensores
 {
 
-    @Override
-    public Double getTempCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public WindowsSens() {
+        super(new WindowsSensors());
     }
 
-    @Override
-    public Double getVoltajeCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Integer[] getVelVentiladores()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

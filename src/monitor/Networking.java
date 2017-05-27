@@ -5,13 +5,20 @@
  */
 package monitor;
 
+import oshi.hardware.Networks;
+
 /**
  *
- * @author Leo J. Vazquez
+ * @author Usuario
  */
-public interface Networking
+public abstract class Networking implements iNetworking
 {
-    
-    public NIC[] getNics();
+
+    private Networks net;
+
+    public Networking(Networks net)
+    {
+	this.net=net;	
+    }
     
 }

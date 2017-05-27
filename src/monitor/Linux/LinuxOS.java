@@ -6,13 +6,18 @@
 package monitor.Linux;
 
 import monitor.OS;
+import oshi.software.common.AbstractOperatingSystem;
+import oshi.software.os.linux.LinuxOperatingSystem;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class LinuxOS implements OS
-{
+class LinuxOS extends OS{
+
+    public LinuxOS() {
+        super(new LinuxOperatingSystem());
+    }
 
     @Override
     public String getFamiliaOS()

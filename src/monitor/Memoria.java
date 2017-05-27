@@ -5,14 +5,38 @@
  */
 package monitor;
 
+import oshi.hardware.GlobalMemory;
+
 /**
  *
- * @author Leo J. Vazquez
+ * @author Usuario
  */
-public interface Memoria
-{
-    Integer getMemFisicaTotal();
-    Integer getMemSwapTotal();
-    Integer getMemFisicaUso();
-    Integer getMemSwapUso();
+public abstract class Memoria implements iMemoria{
+
+    private GlobalMemory memory;
+
+    public Memoria(GlobalMemory memory) {
+        this.memory = memory;
+    }
+       
+    @Override
+    public Integer getMemFisicaTotal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getMemSwapTotal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getMemFisicaUso() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getMemSwapUso() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

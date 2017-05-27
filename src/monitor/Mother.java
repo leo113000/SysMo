@@ -5,12 +5,30 @@
  */
 package monitor;
 
+import oshi.hardware.Baseboard;
+import oshi.hardware.common.AbstractBaseboard;
+import oshi.hardware.common.AbstractHardwareAbstractionLayer;
+
 /**
  *
- * @author Leo J. Vazquez
+ * @author Usuario
  */
-public interface Mother
-{
-    String getMarcaMother();
-    String getModeloMother();
+public abstract class Mother implements iMother{
+
+    private AbstractHardwareAbstractionLayer mother;
+
+    public Mother(AbstractHardwareAbstractionLayer mother) {
+        this.mother = mother;
+    }
+       
+    @Override
+    public String getMarcaMother() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getModeloMother() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

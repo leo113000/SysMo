@@ -5,13 +5,33 @@
  */
 package monitor;
 
+import oshi.software.common.AbstractOperatingSystem;
+
 /**
  *
- * @author Leo J. Vazquez
+ * @author Usuario
  */
-public interface OS
-{
-  String getFamiliaOS  ();
-  String getVersionOS();
-  String getFabricanteOS();
+public abstract class OS implements iOS{
+
+    private AbstractOperatingSystem sys;
+
+    public OS(AbstractOperatingSystem sys) {
+        this.sys = sys;
+    }
+    
+    @Override
+    public String getFamiliaOS() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getVersionOS() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getFabricanteOS() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

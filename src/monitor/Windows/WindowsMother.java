@@ -6,24 +6,23 @@
 package monitor.Windows;
 
 import monitor.Mother;
+import oshi.hardware.common.AbstractHardwareAbstractionLayer;
+import oshi.hardware.platform.windows.WindowsHardwareAbstractionLayer;
+
+
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class WindowsMother implements Mother
-{
+public  class WindowsMother extends Mother{
 
-    @Override
-    public String getMarcaMother()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public WindowsMother() {
+        super(new WindowsHardwareAbstractionLayer());
+    
+        
     }
-
-    @Override
-    public String getModeloMother()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
     
 }

@@ -5,13 +5,34 @@
  */
 package monitor;
 
+import oshi.hardware.NetworkIF;
+import oshi.hardware.Networks;
+
 /**
  *
- * @author Leo J. Vazquez
+ * @author Usuario
  */
-public interface NIC extends Networking
-{
-    Integer getIPv4();
-    Integer getMACAdress();
-    String getNombre();
+public class NIC implements iNIC {
+
+    private NetworkIF nic;
+
+    public NIC() {
+        this.nic = nic;
+    }
+
+    @Override
+    public Integer getIPv4() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getMACAdress() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getNombre() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -6,30 +6,18 @@
 package monitor.Windows;
 
 import monitor.OS;
+import oshi.json.software.os.OperatingSystem;
+import oshi.software.os.windows.WindowsOperatingSystem;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class WindowsOS implements OS
-{
-
-    @Override
-    public String getFamiliaOS()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getVersionOS()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getFabricanteOS()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class WindowsOS extends OS{
+    
+    public WindowsOS() {
+        super(new WindowsOperatingSystem());
     }
     
+       
 }

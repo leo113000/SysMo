@@ -6,13 +6,18 @@
 package monitor.Linux;
 
 import monitor.Memoria;
+import oshi.hardware.GlobalMemory;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class LinuxMem implements Memoria
+class LinuxMem extends Memoria
 {
+
+    public LinuxMem(GlobalMemory memory) {
+        super(memory);
+    }
 
     @Override
     public Integer getMemFisicaTotal()
