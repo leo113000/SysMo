@@ -6,6 +6,7 @@
 package monitor;
 
 import oshi.hardware.Baseboard;
+import oshi.hardware.ComputerSystem;
 import oshi.hardware.common.AbstractBaseboard;
 import oshi.hardware.common.AbstractHardwareAbstractionLayer;
 
@@ -13,22 +14,33 @@ import oshi.hardware.common.AbstractHardwareAbstractionLayer;
  *
  * @author Usuario
  */
-public abstract class Mother implements iMother{
+public abstract class Mother implements iMother
+{
 
-    private AbstractHardwareAbstractionLayer mother;
+    private Baseboard mother;
 
-    public Mother(AbstractHardwareAbstractionLayer mother) {
-        this.mother = mother;
-    }
-       
-    @Override
-    public String getMarcaMother() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Mother(AbstractHardwareAbstractionLayer hardAbs)
+    {
+	getBaseboard(hardAbs);
     }
 
-    @Override
-    public String getModeloMother() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void getBaseboard(AbstractHardwareAbstractionLayer hardAbs)
+    {
+	ComputerSystem cs = hardAbs.getComputerSystem(); //Esto me permite obtener la placa madre
+
+	mother=cs.getBaseboard();
     }
     
+    @Override
+    public String getMarcaMother()
+    {
+	return mother.getManufacturer();
+    }
+
+    @Override
+    public String getModeloMother()
+    {
+	return mother.getModel() + " - " + mother.getVersion(); //Esto quizás se pueda modularizar
+    }
+
 }

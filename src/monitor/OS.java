@@ -5,7 +5,12 @@
  */
 package monitor;
 
-import oshi.software.common.AbstractOperatingSystem;
+import oshi.software.os.OperatingSystem;
+import oshi.software.os.OperatingSystemVersion;
+
+
+
+
 
 /**
  *
@@ -13,25 +18,30 @@ import oshi.software.common.AbstractOperatingSystem;
  */
 public abstract class OS implements iOS{
 
-    private AbstractOperatingSystem sys;
+    private OperatingSystem sys;
 
-    public OS(AbstractOperatingSystem sys) {
+    public OS(OperatingSystem sys) {
         this.sys = sys;
     }
     
     @Override
     public String getFamiliaOS() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sys.getFamily();
     }
 
     @Override
     public String getVersionOS() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	
+	OperatingSystemVersion osVersion = sys.getVersion();
+	
+	return osVersion.getVersion() 
+		+" - "+ osVersion.getCodeName() +" - "+ osVersion.getBuildNumber();
+	// Tiene todo esos datos se podría ver otra forma de manejarlos, quizas funciones aparte
     }
 
     @Override
     public String getFabricanteOS() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sys.getManufacturer();
     }
     
 }

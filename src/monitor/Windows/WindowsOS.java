@@ -6,14 +6,13 @@
 package monitor.Windows;
 
 import monitor.OS;
-import oshi.json.software.os.OperatingSystem;
 import oshi.software.os.windows.WindowsOperatingSystem;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-public class WindowsOS extends OS{
+class WindowsOS extends OS{
     
     public WindowsOS() {
         super(new WindowsOperatingSystem());

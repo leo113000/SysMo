@@ -22,17 +22,19 @@ public class NIC implements iNIC {
 
     @Override
     public Integer getIPv4() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // La función devuelve un arreglo de String que solo tiene contenido en el primer espacio
+       //Considerar devolver otra cosa o ver mejor manera de devolverlo como Integer
+	throw new UnsupportedOperationException("");
     }
 
     @Override
     public Integer getMACAdress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Integer.parseInt(nic.getMacaddr()); //Quizas modificar a String
     }
 
     @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nic.getName();
     }
 
 }

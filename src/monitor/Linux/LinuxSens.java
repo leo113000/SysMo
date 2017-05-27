@@ -6,7 +6,6 @@
 package monitor.Linux;
 
 import monitor.Sensores;
-import oshi.hardware.Sensors;
 import oshi.hardware.platform.linux.LinuxSensors;
 
 

@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import monitor.Linux.MonitorLinux;
 import monitor.Monitor;
 import oshi.SystemInfo;
+import oshi.hardware.NetworkIF;
+import oshi.hardware.Networks;
+import oshi.hardware.platform.linux.LinuxNetworks;
 import ui.Home;
 
 /**
@@ -21,9 +24,17 @@ public class MonitorDelSistema {
      */
     public static void main(String[] args) throws InterruptedException, IOException, Exception {
         
-        /*
+        //Bloque para probar metodo de redes
+	Networks leo=new LinuxNetworks();
+	NetworkIF[] leox=leo.getNetworks();
+	String cuerda[]=leox[0].getIPv6addr();
+	System.out.println(cuerda[0]);
+	
+	
+	/*
         Aquí preparo un hashmap con los argumentos de entrada de la aplicación
-        */
+        */  
+	
         HashMap<String, String> argumentos = new HashMap<>();
         //A cada string parámetro lo divido en el igual y uso el miembro de la 
         //izquierda como clave y al de la derecha como valor en el hashmap
@@ -32,6 +43,14 @@ public class MonitorDelSistema {
             argumentos.put(partesArgumento[0], partesArgumento[1]); //Pongo clave y valor en el map
         }
         
+	
+	///////////////////////BY LEO///////////////////////////////
+	
+	argumentos.put("gui", "true");
+	
+	///////////////////////BY LEO///////////////////////////////
+	
+	
         /*
         Aquí determino haciendo uso de un enum provisto en OSHI
         el sistema operativo actual

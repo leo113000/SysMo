@@ -6,14 +6,13 @@
 package monitor.Windows;
 
 import monitor.Sensores;
-import oshi.hardware.Sensors;
 import oshi.hardware.platform.windows.WindowsSensors;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-public class WindowsSens extends Sensores
+class WindowsSens extends Sensores
 {
 
     public WindowsSens() {

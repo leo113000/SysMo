@@ -11,32 +11,38 @@ import oshi.hardware.GlobalMemory;
  *
  * @author Usuario
  */
-public abstract class Memoria implements iMemoria{
+public abstract class Memoria implements iMemoria
+{
 
     private GlobalMemory memory;
 
-    public Memoria(GlobalMemory memory) {
-        this.memory = memory;
-    }
-       
-    @Override
-    public Integer getMemFisicaTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Memoria(GlobalMemory memory)
+    {
+	this.memory = memory;
     }
 
     @Override
-    public Integer getMemSwapTotal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer getMemFisicaTotal()
+    {
+	return (int) memory.getTotal();
     }
 
     @Override
-    public Integer getMemFisicaUso() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer getMemSwapTotal()
+    {
+	return (int) memory.getSwapTotal();
     }
 
     @Override
-    public Integer getMemSwapUso() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Integer getMemFisicaUso()
+    {
+	return (int) (memory.getTotal() - memory.getAvailable()); //Memoria total - disponible=memoria en uso
     }
-    
+
+    @Override
+    public Integer getMemSwapUso()
+    {
+	return (int) memory.getSwapUsed();
+    }
+
 }

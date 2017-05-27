@@ -6,7 +6,6 @@
 package monitor.Windows;
 
 import monitor.Mother;
-import oshi.hardware.common.AbstractHardwareAbstractionLayer;
 import oshi.hardware.platform.windows.WindowsHardwareAbstractionLayer;
 
 
@@ -15,7 +14,7 @@ import oshi.hardware.platform.windows.WindowsHardwareAbstractionLayer;
  *
  * @author Leo J. Vazquez
  */
-public  class WindowsMother extends Mother{
+class WindowsMother extends Mother{
 
     public WindowsMother() {
         super(new WindowsHardwareAbstractionLayer());

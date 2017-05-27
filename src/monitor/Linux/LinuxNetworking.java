@@ -6,7 +6,6 @@
 package monitor.Linux;
 
 import monitor.Networking;
-import monitor.iNIC;
 import oshi.hardware.platform.linux.LinuxNetworks;
 
 /**

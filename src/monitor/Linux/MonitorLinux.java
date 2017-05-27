@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package monitor.Linux;
+
 import monitor.Monitor;
-
-
-
 
 
 /**

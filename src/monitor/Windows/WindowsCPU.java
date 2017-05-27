@@ -6,14 +6,13 @@
 package monitor.Windows;
 
 import monitor.CPU;
-import oshi.hardware.CentralProcessor;
 import oshi.hardware.platform.windows.WindowsCentralProcessor;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-public class WindowsCPU extends CPU{
+class WindowsCPU extends CPU{
 
     public WindowsCPU() {
         super(new WindowsCentralProcessor());

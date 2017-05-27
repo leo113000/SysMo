@@ -6,7 +6,6 @@
 package monitor.Linux;
 
 import monitor.OS;
-import oshi.software.common.AbstractOperatingSystem;
 import oshi.software.os.linux.LinuxOperatingSystem;
 
 /**
@@ -17,24 +16,6 @@ class LinuxOS extends OS{
 
     public LinuxOS() {
         super(new LinuxOperatingSystem());
-    }
-
-    @Override
-    public String getFamiliaOS()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getVersionOS()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getFabricanteOS()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

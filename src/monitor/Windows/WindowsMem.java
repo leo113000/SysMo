@@ -6,14 +6,13 @@
 package monitor.Windows;
 
 import monitor.Memoria;
-import oshi.hardware.GlobalMemory;
 import oshi.hardware.platform.windows.WindowsGlobalMemory;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-public class WindowsMem extends Memoria{
+class WindowsMem extends Memoria{
 
     public WindowsMem() {
         super(new WindowsGlobalMemory());

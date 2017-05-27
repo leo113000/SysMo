@@ -26,14 +26,23 @@ public abstract class Networking implements iNetworking
 
     private void crearNics()
     {
-	
-	
+	NetworkIF[] nets = net.getNetworks();
+	iNIC[] aux = new iNIC[nets.length]; // Se crea un arreglo de iNIC (aun no construidas)
+
+	int i = 0;
+
+	for (NetworkIF iNet : nets)
+	{
+	    aux[i] = new NIC(iNet);//Se construye cada espacio del array
+	    i++;
+	}
+
     }
 
     @Override
     public iNIC[] getNics()
     {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return nics;
     }
 
 }
