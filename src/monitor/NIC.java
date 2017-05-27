@@ -7,8 +7,11 @@ package monitor;
 
 /**
  *
- * @author turin
+ * @author Leo J. Vazquez
  */
-public class MonitorWindows extends Monitor {
-
+public interface NIC extends Networking
+{
+    Integer getIPv4();
+    Integer getMACAdress();
+    String getNombre();
 }

@@ -5,12 +5,13 @@
  */
 package monitor;
 
-
-
 /**
  *
- * @author turin
+ * @author Leo J. Vazquez
  */
-public class MonitorLinux extends Monitor {
+public interface Networking
+{
+    
+    public NIC[] getNics();
     
 }
