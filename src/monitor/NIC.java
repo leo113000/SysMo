@@ -16,7 +16,7 @@ public class NIC implements iNIC {
 
     private NetworkIF nic;
 
-    public NIC() {
+    public NIC(NetworkIF nic) {
         this.nic = nic;
     }
 

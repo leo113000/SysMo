@@ -5,6 +5,7 @@
  */
 package monitor;
 
+import oshi.hardware.NetworkIF;
 import oshi.hardware.Networks;
 
 /**
@@ -15,10 +16,24 @@ public abstract class Networking implements iNetworking
 {
 
     private Networks net;
+    private iNIC[] nics;
 
     public Networking(Networks net)
     {
-	this.net=net;	
+	this.net = net;
+	crearNics();
     }
-    
+
+    private void crearNics()
+    {
+	
+	
+    }
+
+    @Override
+    public iNIC[] getNics()
+    {
+	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

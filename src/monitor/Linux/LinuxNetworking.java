@@ -9,22 +9,16 @@ import monitor.Networking;
 import monitor.iNIC;
 import oshi.hardware.platform.linux.LinuxNetworks;
 
-
 /**
  *
  * @author Leo J. Vazquez
  */
-class LinuxNetworking extends Networking{
+class LinuxNetworking extends Networking
+{
 
-    
-    public LinuxNetworking() {
-        super(new LinuxNetworks());
+    public LinuxNetworking()
+    {
+	super(new LinuxNetworks());
     }
 
-    @Override
-    public iNIC[] getNics() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-        
-    
 }
