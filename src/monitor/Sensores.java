@@ -5,13 +5,34 @@
  */
 package monitor;
 
+import oshi.hardware.Sensors;
+
 /**
  *
- * @author Leo J. Vazquez
+ * @author Usuario
  */
-public interface Sensores
-{
-    Double getTempCPU();
-    Double getVoltajeCPU();
-    Integer[] getVelVentiladores();
+public abstract class Sensores implements iSensores {
+    
+    private Sensors sensor;
+
+    public Sensores(Sensors sensor) {
+        this.sensor = sensor;
+    }
+
+        
+    @Override
+    public Double getTempCPU() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Double getVoltajeCPU() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer[] getVelVentiladores() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

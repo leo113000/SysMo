@@ -6,13 +6,18 @@
 package monitor.Linux;
 
 import monitor.Mother;
+import oshi.hardware.common.AbstractHardwareAbstractionLayer;
+import oshi.hardware.platform.linux.LinuxHardwareAbstractionLayer;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class LinuxMother implements Mother
-{
+class LinuxMother extends Mother{
+
+    public LinuxMother() {
+        super(new LinuxHardwareAbstractionLayer());
+    }
 
     @Override
     public String getMarcaMother()

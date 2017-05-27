@@ -6,48 +6,17 @@
 package monitor.Windows;
 
 import monitor.CPU;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.platform.windows.WindowsCentralProcessor;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class WindowsCPU implements CPU
-{
+public class WindowsCPU extends CPU{
 
-    @Override
-    public String getFamiliaCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public WindowsCPU() {
+        super(new WindowsCentralProcessor());
     }
-
-    @Override
-    public String getModeloCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getFabricanteCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Integer getNucleosLogicosCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Integer getNucleosFisicosCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Double getUsoActualCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+        
 }

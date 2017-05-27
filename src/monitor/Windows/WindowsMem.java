@@ -6,36 +6,18 @@
 package monitor.Windows;
 
 import monitor.Memoria;
+import oshi.hardware.GlobalMemory;
+import oshi.hardware.platform.windows.WindowsGlobalMemory;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class WindowsMem implements Memoria
-{
+public class WindowsMem extends Memoria{
 
-    @Override
-    public Integer getMemFisicaTotal()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public WindowsMem() {
+        super(new WindowsGlobalMemory());
     }
 
-    @Override
-    public Integer getMemSwapTotal()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Integer getMemFisicaUso()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Integer getMemSwapUso()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

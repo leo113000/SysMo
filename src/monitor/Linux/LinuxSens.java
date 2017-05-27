@@ -6,6 +6,8 @@
 package monitor.Linux;
 
 import monitor.Sensores;
+import oshi.hardware.Sensors;
+import oshi.hardware.platform.linux.LinuxSensors;
 
 
 
@@ -13,25 +15,13 @@ import monitor.Sensores;
  *
  * @author Leo J. Vazquez
  */
-class LinuxSens implements Sensores
+class LinuxSens extends Sensores
 {
 
-    @Override
-    public Double getTempCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public LinuxSens() {
+        super(new LinuxSensors() );
     }
 
-    @Override
-    public Double getVoltajeCPU()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Integer[] getVelVentiladores()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

@@ -6,14 +6,21 @@
 package monitor.Linux;
 
 import monitor.CPU;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.platform.windows.WindowsCentralProcessor;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class LinuxCPU implements CPU
+class LinuxCPU extends CPU
 {
 
+    public LinuxCPU() {
+        super(new WindowsCentralProcessor());
+    }
+    
+    
     @Override
     public String getFamiliaCPU()
     {
