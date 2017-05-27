@@ -6,6 +6,7 @@
 package monitor.Linux;
 
 import monitor.CPU;
+
 import oshi.hardware.platform.linux.LinuxCentralProcessor;
 
 
