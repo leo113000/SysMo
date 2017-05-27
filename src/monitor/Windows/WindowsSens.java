@@ -6,7 +6,6 @@
 package monitor.Windows;
 
 import monitor.Sensores;
-import oshi.hardware.Sensors;
 import oshi.hardware.platform.windows.WindowsSensors;
 
 /**

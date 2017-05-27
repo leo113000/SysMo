@@ -6,7 +6,6 @@
 package monitor.Linux;
 
 import monitor.Mother;
-import oshi.hardware.common.AbstractHardwareAbstractionLayer;
 import oshi.hardware.platform.linux.LinuxHardwareAbstractionLayer;
 
 /**
@@ -19,16 +18,5 @@ class LinuxMother extends Mother{
         super(new LinuxHardwareAbstractionLayer());
     }
 
-    @Override
-    public String getMarcaMother()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getModeloMother()
-    {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

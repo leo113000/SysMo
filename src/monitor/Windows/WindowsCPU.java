@@ -6,7 +6,6 @@
 package monitor.Windows;
 
 import monitor.CPU;
-import oshi.hardware.CentralProcessor;
 import oshi.hardware.platform.windows.WindowsCentralProcessor;
 
 /**

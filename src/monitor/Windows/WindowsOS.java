@@ -6,7 +6,6 @@
 package monitor.Windows;
 
 import monitor.OS;
-import oshi.json.software.os.OperatingSystem;
 import oshi.software.os.windows.WindowsOperatingSystem;
 
 /**
