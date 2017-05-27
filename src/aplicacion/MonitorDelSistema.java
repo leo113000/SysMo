@@ -24,18 +24,6 @@ public class MonitorDelSistema {
      */
     public static void main(String[] args) throws InterruptedException, IOException, Exception {
         
-        //Bloque para probar metodo de redes
-//	Networks leo=new LinuxNetworks();
-//	NetworkIF[] leox=leo.getNetworks();
-//	String cuerda[]=leox[0].getIPv6addr();
-//	System.out.println(cuerda[0]);
-	
-	iNetworking leo=new LinuxNetworking();
-	
-	iNIC[] nics=leo.getNics();
-	
-	System.out.println(nics[0].getIPv4());
-
 	/*
         Aquí preparo un hashmap con los argumentos de entrada de la aplicación
         */  

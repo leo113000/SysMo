@@ -11,7 +11,7 @@ package monitor;
  */
 public interface iNIC
 {
-    Integer getIPv4();
-    Integer getMACAdress();
+    String getIPv4();
+    String getMACAdress();
     String getNombre();
 }

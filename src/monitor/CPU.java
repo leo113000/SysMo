@@ -15,7 +15,6 @@ public abstract class CPU implements iCPU
 {
     
     private CentralProcessor cpu;
-
     public CPU(CentralProcessor cpu) {
         this.cpu = cpu;
     }   
