@@ -30,7 +30,7 @@ public class MonitorDelSistema {
 //	String cuerda[]=leox[0].getIPv6addr();
 //	System.out.println(cuerda[0]);
 	
-	iNetworking leo=new LinuxNetworking();
+	/*iNetworking leo=new LinuxNetworking();
 	
 	iNIC[] nics=leo.getNics();
 	
