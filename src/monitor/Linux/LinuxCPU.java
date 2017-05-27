@@ -7,7 +7,7 @@ package monitor.Linux;
 
 import monitor.CPU;
 import oshi.hardware.CentralProcessor;
-import oshi.hardware.platform.windows.WindowsCentralProcessor;
+import oshi.hardware.platform.windows.LinuxCentralProcessor;
 
 /**
  *
@@ -17,7 +17,7 @@ class LinuxCPU extends CPU
 {
 
     public LinuxCPU() {
-        super(new WindowsCentralProcessor());
+        super(new LinuxCentralProcessor());
     }
     
     
