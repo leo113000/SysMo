@@ -41,7 +41,7 @@ public abstract class OS implements iOS{
 
     @Override
     public String getFabricanteOS() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sys.getManufacturer();
     }
     
 }

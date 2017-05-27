@@ -12,7 +12,7 @@ import oshi.hardware.platform.windows.WindowsCentralProcessor;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsCPU extends CPU{
+class WindowsCPU extends CPU{
 
     public WindowsCPU() {
         super(new WindowsCentralProcessor());

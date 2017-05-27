@@ -14,7 +14,7 @@ import oshi.hardware.platform.windows.WindowsHardwareAbstractionLayer;
  *
  * @author Leo J. Vazquez
  */
-public  class WindowsMother extends Mother{
+class WindowsMother extends Mother{
 
     public WindowsMother() {
         super(new WindowsHardwareAbstractionLayer());

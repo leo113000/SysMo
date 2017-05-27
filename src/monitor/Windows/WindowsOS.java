@@ -12,7 +12,7 @@ import oshi.software.os.windows.WindowsOperatingSystem;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsOS extends OS{
+class WindowsOS extends OS{
     
     public WindowsOS() {
         super(new WindowsOperatingSystem());

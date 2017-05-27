@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 package monitor.Linux;
+
 import monitor.Monitor;
-
-
-
 
 
 /**
@@ -20,7 +18,7 @@ public class MonitorLinux extends Monitor {
 
     public MonitorLinux()
     {
-	super(new LinuxCPU(),new LinuxMem(),new LinuxMother(),new LinuxNIC(),new LinuxSens(),new sensMonitor());   
+	super(new LinuxCPU(),new LinuxMem(),new LinuxMother(),new LinuxNetworking(),new LinuxOS(),new LinuxSens());   
 
 	//Pasar los valores a la clase padre con inicializador estático
     }

@@ -12,7 +12,7 @@ import oshi.hardware.platform.windows.WindowsNetworks;
  *
  * @author Leo J. Vazquez
  */
-public class WindowsNetworking extends Networking
+class WindowsNetworking extends Networking
 {
 
     public WindowsNetworking()

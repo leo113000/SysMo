@@ -22,32 +22,32 @@ public abstract class CPU implements iCPU
     
     @Override
     public String getFamiliaCPU() {
-        throw new UnsupportedOperationException("");
+        return cpu.getFamily();
     }
 
     @Override
     public String getModeloCPU() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cpu.getModel();
     }
 
     @Override
     public String getFabricanteCPU() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cpu.getVendor(); //Creo que este es el vendedor segun Google Translate
     }
 
     @Override
     public Integer getNucleosLogicosCPU() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cpu.getLogicalProcessorCount();
     }
 
     @Override
     public Integer getNucleosFisicosCPU() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cpu.getPhysicalProcessorCount();
     }
 
     @Override
     public Double getUsoActualCPU() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return cpu.getSystemCpuLoad();
     }
     
 }
