@@ -36,6 +36,8 @@ public abstract class Networking implements iNetworking
 	    aux[i] = new NIC(iNet);//Se construye cada espacio del array
 	    i++;
 	}
+	
+	this.nics=aux;
 
     }
 

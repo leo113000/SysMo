@@ -24,7 +24,11 @@ public class NIC implements iNIC {
     public Integer getIPv4() {
        // La función devuelve un arreglo de String que solo tiene contenido en el primer espacio
        //Considerar devolver otra cosa o ver mejor manera de devolverlo como Integer
-	throw new UnsupportedOperationException("");
+	
+       String[] aux=nic.getIPv4addr();
+       System.out.println(aux[0]);
+       
+       return null;
     }
 
     @Override

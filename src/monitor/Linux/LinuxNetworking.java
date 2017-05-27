@@ -12,7 +12,7 @@ import oshi.hardware.platform.linux.LinuxNetworks;
  *
  * @author Leo J. Vazquez
  */
-class LinuxNetworking extends Networking
+public class LinuxNetworking extends Networking
 {
 
     public LinuxNetworking()
