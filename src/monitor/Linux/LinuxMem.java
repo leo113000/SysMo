@@ -6,7 +6,7 @@
 package monitor.Linux;
 
 import monitor.Memoria;
-import oshi.hardware.GlobalMemory;
+import oshi.hardware.platform.linux.LinuxGlobalMemory;
 
 /**
  *
@@ -15,8 +15,8 @@ import oshi.hardware.GlobalMemory;
 class LinuxMem extends Memoria
 {
 
-    public LinuxMem(GlobalMemory memory) {
-        super(memory);
+    public LinuxMem() {
+        super(new LinuxGlobalMemory());
     }
 
     @Override
