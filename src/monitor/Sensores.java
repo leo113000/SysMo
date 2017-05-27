@@ -24,19 +24,21 @@ public abstract class Sensores implements iSensores
     @Override
     public Double getTempCPU()
     {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return sensor.getCpuTemperature();
     }
 
     @Override
     public Double getVoltajeCPU()
     {
-	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	return sensor.getCpuVoltage();
     }
 
     @Override
     public Integer[] getVelVentiladores()
     {
-
+	/*
+	 int[ ] cannot be converted to Integer[ ]   
+	*/
 	int[] aux = sensor.getFanSpeeds();
 	Integer[] rta = new Integer[aux.length]; 
 	
