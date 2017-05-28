@@ -3,11 +3,9 @@ package aplicacion;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.JFrame;
-import monitor.Linux.LinuxNetworking;
+import static javax.swing.text.html.HTML.Tag.HEAD;
 import monitor.Linux.MonitorLinux;
 import monitor.Monitor;
-import monitor.iNIC;
-import monitor.iNetworking;
 import oshi.SystemInfo;
 import ui.Home;
 
@@ -23,7 +21,20 @@ public class MonitorDelSistema {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws InterruptedException, IOException, Exception {
-        
+
+        //Bloque para probar metodo de redes
+//	Networks leo=new LinuxNetworks();
+//	NetworkIF[] leox=leo.getNetworks();
+//	String cuerda[]=leox[0].getIPv6addr();
+//	System.out.println(cuerda[0]);
+	
+	/*iNetworking leo=new LinuxNetworking();
+	
+	iNIC[] nics=leo.getNics();
+	
+	System.out.println(nics[0].getIPv4());
+
+>>>>>>> b160e070143c7813f36034e444271041241b80ea
 	/*
         Aquí preparo un hashmap con los argumentos de entrada de la aplicación
         */  
