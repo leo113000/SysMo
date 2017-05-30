@@ -50,4 +50,12 @@ public abstract class CPU implements iCPU
         return cpu.getSystemCpuLoad();
     }
     
+    @Override
+    
+    public Boolean getArquitecturaCPU(){
+        
+        return cpu.isCpu64bit();
+        
+    }
+    
 }

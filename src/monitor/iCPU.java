@@ -17,5 +17,6 @@ public interface iCPU
     Integer getNucleosLogicosCPU();
     Integer getNucleosFisicosCPU();
     Double getUsoActualCPU();
+    Boolean getArquitecturaCPU();
     
 }
