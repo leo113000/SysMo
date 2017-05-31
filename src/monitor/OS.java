@@ -16,7 +16,7 @@ import oshi.software.os.OperatingSystemVersion;
  *
  * @author Usuario
  */
-public abstract class OS implements iOS,JsonSerializable{
+public abstract class OS implements iOS{
 
     private OperatingSystem sys;
 

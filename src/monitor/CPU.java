@@ -11,7 +11,7 @@ import oshi.hardware.CentralProcessor;
  *
  * @author Usuario
  */
-public abstract class CPU implements iCPU,JsonSerializable
+public abstract class CPU implements iCPU
 {
     
     private CentralProcessor cpu;

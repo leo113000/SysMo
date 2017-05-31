@@ -11,7 +11,7 @@ import oshi.hardware.GlobalMemory;
  *
  * @author Usuario
  */
-public abstract class Memoria implements iMemoria,JsonSerializable
+public abstract class Memoria implements iMemoria
 {
 
     private GlobalMemory memory;

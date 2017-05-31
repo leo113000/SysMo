@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iNIC
+public interface iNIC 
 {
     Integer getIPv4();
     Integer getMACAdress();

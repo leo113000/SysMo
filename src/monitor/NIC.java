@@ -12,7 +12,7 @@ import oshi.hardware.Networks;
  *
  * @author Usuario
  */
-public class NIC implements iNIC,JsonSerializable {
+public class NIC implements iNIC {
 
     private NetworkIF nic;
 

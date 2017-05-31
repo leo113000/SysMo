@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iSensores
+public interface iSensores extends JsonSerializable
 {
     Double getTempCPU();
     Double getVoltajeCPU();

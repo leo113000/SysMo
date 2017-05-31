@@ -84,7 +84,7 @@ public abstract class Monitor implements JsonSerializable
     @Override
     public String ToJson() {
         
-       return null;
+       return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s}",this.cpuMonitor.ToJson(),this.memMonitor.ToJson(),this.motherMonitor.ToJson(),this.networkingMonitor.ToJson(),this.osMonitor.ToJson(),this.sensMonitor.ToJson());
     
         
     

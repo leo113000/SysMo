@@ -11,7 +11,7 @@ import oshi.hardware.Sensors;
  *
  * @author Usuario
  */
-public abstract class Sensores implements iSensores,JsonSerializable
+public abstract class Sensores implements iSensores
 {
 
     private Sensors sensor;

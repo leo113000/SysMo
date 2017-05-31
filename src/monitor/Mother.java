@@ -14,7 +14,7 @@ import oshi.hardware.common.AbstractHardwareAbstractionLayer;
  *
  * @author Usuario
  */
-public abstract class Mother implements iMother,JsonSerializable
+public abstract class Mother implements iMother
 {
 
     private Baseboard mother;
