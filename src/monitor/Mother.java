@@ -14,7 +14,7 @@ import oshi.hardware.common.AbstractHardwareAbstractionLayer;
  *
  * @author Usuario
  */
-public abstract class Mother implements iMother
+public abstract class Mother implements iMother,JsonSerializable
 {
 
     private Baseboard mother;
@@ -41,6 +41,13 @@ public abstract class Mother implements iMother
     public String getModeloMother()
     {
 	return mother.getModel() + " - " + mother.getVersion(); //Esto quizás se pueda modularizar
+    }
+
+    @Override
+    public String ToJson() {
+       
+       return String.format("{\"Marca\":%s,\"Modelo\":%s}",this.getMarcaMother(),this.getModeloMother());
+    
     }
 
 }

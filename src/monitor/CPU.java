@@ -11,7 +11,7 @@ import oshi.hardware.CentralProcessor;
  *
  * @author Usuario
  */
-public abstract class CPU implements iCPU
+public abstract class CPU implements iCPU,JsonSerializable
 {
     
     private CentralProcessor cpu;
@@ -56,6 +56,19 @@ public abstract class CPU implements iCPU
         
         return cpu.isCpu64bit();
         
+    }
+
+    @Override
+    public String ToJson() {
+        
+        
+        int Nf=this.getNucleosFisicosCPU();
+        int Nl =this.getNucleosLogicosCPU();
+        
+         return String.format("{\"Nucleos Fisicos:\":%d,\"Nucleos Logicos :\":%d}",Nf,Nl);
+    
+        
+    
     }
     
 }

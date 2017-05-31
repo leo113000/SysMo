@@ -11,7 +11,7 @@ import oshi.hardware.Sensors;
  *
  * @author Usuario
  */
-public abstract class Sensores implements iSensores
+public abstract class Sensores implements iSensores,JsonSerializable
 {
 
     private Sensors sensor;
@@ -50,6 +50,13 @@ public abstract class Sensores implements iSensores
 	}
 	
 	return rta;
+    }
+
+    @Override
+    public String ToJson() {
+    
+        
+    return null;
     }
 
 }

@@ -23,7 +23,7 @@ public class MonitorDelSistema {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws InterruptedException, IOException, Exception {
-        
+      
         //Bloque para probar metodo de redes
 //	Networks leo=new LinuxNetworks();
 //	NetworkIF[] leox=leo.getNetworks();

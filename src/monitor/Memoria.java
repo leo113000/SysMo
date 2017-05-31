@@ -11,7 +11,7 @@ import oshi.hardware.GlobalMemory;
  *
  * @author Usuario
  */
-public abstract class Memoria implements iMemoria
+public abstract class Memoria implements iMemoria,JsonSerializable
 {
 
     private GlobalMemory memory;
@@ -43,6 +43,17 @@ public abstract class Memoria implements iMemoria
     public Integer getMemSwapUso()
     {
 	return (int) memory.getSwapUsed();
+    }
+
+    @Override
+    public String ToJson() {
+       
+     Integer L=(int)this.getMemFisicaTotal();
+     Integer T=(int)this.getMemSwapTotal();
+        
+        return String.format("{\"MemFisicaTotal\":%s,\"MemSwapTotal\":%s}",L,T);
+        
+       
     }
 
 }

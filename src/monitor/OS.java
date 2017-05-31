@@ -16,7 +16,7 @@ import oshi.software.os.OperatingSystemVersion;
  *
  * @author Usuario
  */
-public abstract class OS implements iOS{
+public abstract class OS implements iOS,JsonSerializable{
 
     private OperatingSystem sys;
 
@@ -42,6 +42,13 @@ public abstract class OS implements iOS{
     @Override
     public String getFabricanteOS() {
         return sys.getManufacturer();
+    }
+
+    @Override
+    public String ToJson() {
+       
+    return String.format("{\"Familia\":%s,\"Versio\":%s,\"Fabricante\":%s}",this.getFamiliaOS(),this.getVersionOS(),this.getFabricanteOS());
+    
     }
     
 }

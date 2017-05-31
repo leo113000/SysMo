@@ -12,7 +12,7 @@ import oshi.hardware.Networks;
  *
  * @author Usuario
  */
-public class NIC implements iNIC {
+public class NIC implements iNIC,JsonSerializable {
 
     private NetworkIF nic;
 
@@ -39,6 +39,13 @@ public class NIC implements iNIC {
     @Override
     public String getNombre() {
         return nic.getName();
+    }
+
+    @Override
+    public String ToJson() {
+       
+        return String.format("{\"Ipv4\":%d,\"Mac Adress\":%d,\"Nombre\":%s}",this.getIPv4(),this.getMACAdress(),this.getNombre());
+                
     }
 
 }

@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iCPU
+public interface iCPU 
 {
     String getFamiliaCPU();
     String getModeloCPU();
