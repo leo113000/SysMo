@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iCPU
+public interface iCPU extends JsonSerializable
 {
     String getFamiliaCPU();
     String getModeloCPU();
@@ -17,5 +17,6 @@ public interface iCPU
     Integer getNucleosLogicosCPU();
     Integer getNucleosFisicosCPU();
     Double getUsoActualCPU();
+    Boolean getArquitecturaCPU();
     
 }

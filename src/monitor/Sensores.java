@@ -52,4 +52,11 @@ public abstract class Sensores implements iSensores
 	return rta;
     }
 
+    @Override
+    public String ToJson() {
+    
+        
+    return null;
+    }
+
 }

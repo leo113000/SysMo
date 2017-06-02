@@ -45,4 +45,15 @@ public abstract class Memoria implements iMemoria
 	return (int) memory.getSwapUsed();
     }
 
+    @Override
+    public String ToJson() {
+       
+     Integer L=(int)this.getMemFisicaTotal();
+     Integer T=(int)this.getMemSwapTotal();
+        
+        return String.format("{\"MemFisicaTotal\":%s,\"MemSwapTotal\":%s}",L,T);
+        
+       
+    }
+
 }

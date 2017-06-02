@@ -9,7 +9,7 @@ package monitor;
  *
  * @author turin
  */
-public abstract class Monitor
+public abstract class Monitor implements JsonSerializable
 {
     iCPU cpuMonitor;
     iMemoria memMonitor;
@@ -79,6 +79,15 @@ public abstract class Monitor
 
     public void setSensMonitor(iSensores sensMonitor) {
         this.sensMonitor = sensMonitor;
+    }
+
+    @Override
+    public String ToJson() {
+        
+       return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s}",this.cpuMonitor.ToJson(),this.memMonitor.ToJson(),this.motherMonitor.ToJson(),this.networkingMonitor.ToJson(),this.osMonitor.ToJson(),this.sensMonitor.ToJson());
+    
+        
+    
     }
 
     

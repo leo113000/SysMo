@@ -25,16 +25,16 @@ public class Home extends javax.swing.JFrame {
         this();
         this.monitor = monitor;
         
-       /* lblCpuArquitectura.setText(monitor.getCpuMonitor().getFabricanteCPU());
-        lblCpuMarca.setText(monitor.getCpuFabricante());
-        lblCpuModelo.setText(monitor.getCpuModelo());
-        lblCpuNucleosFisicos.setText(monitor.getCpuNucleosFisicos().toString());
-        lblCpuNucleosLogicos.setText(monitor.getCpuNucleosLogicos().toString());
-        lblMotherMarca.setText(monitor.getMotherMarca());
-        lblMotherModelo.setText(monitor.getMotherModelo());
-        lblOsFamilia.setText(monitor.getOsFamilia());
-        lblOsVersion.setText(monitor.getOsVersion());
-        lblRamTotal.setText(monitor.getMemFisicaTotal().toString());*/
+        lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU()? "64 bit":"32 bit" );
+        lblCpuMarca.setText(monitor.getCpuMonitor().getFabricanteCPU());
+        lblCpuModelo.setText(monitor.getCpuMonitor().getModeloCPU());
+        lblCpuNucleosFisicos.setText(monitor.getCpuMonitor().getNucleosFisicosCPU().toString());
+        lblCpuNucleosLogicos.setText(monitor.getCpuMonitor().getNucleosLogicosCPU().toString());
+        lblMotherMarca.setText(monitor.getMotherMonitor().getMarcaMother());
+        lblMotherModelo.setText(monitor.getMotherMonitor().getModeloMother());
+        lblOsFamilia.setText(monitor.getOsMonitor().getFamiliaOS());
+        lblOsVersion.setText(monitor.getOsMonitor().getVersionOS());
+        lblRamTotal.setText(monitor.getMemMonitor().getMemFisicaTotal().toString());
         
     }
     

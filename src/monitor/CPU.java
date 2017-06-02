@@ -49,4 +49,25 @@ public abstract class CPU implements iCPU
         return cpu.getSystemCpuLoad();
     }
     
+    @Override
+    
+    public Boolean getArquitecturaCPU(){
+        
+        return cpu.isCpu64bit();
+        
+    }
+
+    @Override
+    public String ToJson() {
+        
+        
+        int Nf=this.getNucleosFisicosCPU();
+        int Nl =this.getNucleosLogicosCPU();
+        
+         return String.format("{\"Nucleos Fisicos:\":%d,\"Nucleos Logicos :\":%d}",Nf,Nl);
+    
+        
+    
+    }
+    
 }

@@ -7,10 +7,10 @@ package monitor;
 
 /**
  *
- * @author Leo J. Vazquez
+ * @author dario
  */
-public interface iMother extends JsonSerializable
-{
-    String getMarcaMother();
-    String getModeloMother();
+public interface JsonSerializable {
+    
+    public String ToJson();
+    
 }

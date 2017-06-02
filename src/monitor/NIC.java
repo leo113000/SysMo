@@ -38,4 +38,11 @@ public class NIC implements iNIC {
         return nic.getName();
     }
 
+    @Override
+    public String ToJson() {
+       
+        return String.format("{\"Ipv4\":%d,\"Mac Adress\":%d,\"Nombre\":%s}",this.getIPv4(),this.getMACAdress(),this.getNombre());
+                
+    }
+
 }

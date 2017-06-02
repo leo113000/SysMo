@@ -43,4 +43,11 @@ public abstract class Mother implements iMother
 	return mother.getModel() + " - " + mother.getVersion(); //Esto quizás se pueda modularizar
     }
 
+    @Override
+    public String ToJson() {
+       
+       return String.format("{\"Marca\":%s,\"Modelo\":%s}",this.getMarcaMother(),this.getModeloMother());
+    
+    }
+
 }
