@@ -86,12 +86,8 @@ class LinuxGraphics extends AbstractGraphics
 
     private void constructData(ArrayList<String> datos)
     {
-	ArrayList<String> fields = new ArrayList<>();
+	ArrayList<String> fields =createFields(); //Creo los campos para comparar y extraer
 
-	fields.add("DRIVER");
-	fields.add("PCI_ID");
-	fields.add("VENDOR");
-	fields.add("MODEL");
 
 	for (String iString : datos) //Por cada linea de todos los datos
 	{
@@ -125,7 +121,19 @@ class LinuxGraphics extends AbstractGraphics
 	    }
 	}
     }
+    
+     private ArrayList<String> createFields()
+    {
+	ArrayList<String> fields = new ArrayList<>();
 
+	fields.add("DRIVER");
+	fields.add("PCI_ID");
+	fields.add("VENDOR");
+	fields.add("MODEL");
+
+	return fields;
+    }
+    
     private String obtainPciNumber() throws IOException
     {
 	String retorno = null;
@@ -142,7 +150,7 @@ class LinuxGraphics extends AbstractGraphics
 	{
 	    if (line.contains("bus info"))
 	    {
-		retorno = cortarDespuesDe(line, "@");
+		retorno = cortarDespuesDe(line, "@"); //Corto despues del @ para obtener el PCI #
 	    }
 	}
 
@@ -165,7 +173,7 @@ class LinuxGraphics extends AbstractGraphics
 
 	while ((line = br.readLine()) != null)
 	{
-	    datos.add(line);
+	    datos.add(line); //Cada linea se pasa a un arreglo de Strings
 	}
 
 	return datos;
