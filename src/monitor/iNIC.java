@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iNIC 
+public interface iNIC extends JsonSerializable
 {
     String getIPv4();
     String getMACAdress();

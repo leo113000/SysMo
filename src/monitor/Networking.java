@@ -47,4 +47,12 @@ public abstract class Networking implements iNetworking
 	return nics;
     }
 
+    @Override
+    public String ToJson()
+    {
+	return null;
+    }
+    
+    
+
 }
