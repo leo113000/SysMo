@@ -10,5 +10,6 @@ package persistencia;
  * @author dario
  */
 public class ArchivoTexto {
+        
     
 }
