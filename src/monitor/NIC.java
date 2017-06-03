@@ -6,7 +6,6 @@
 package monitor;
 
 import oshi.hardware.NetworkIF;
-import oshi.hardware.Networks;
 
 /**
  *
@@ -25,7 +24,8 @@ public class NIC implements iNIC {
 
 	//Ver que devuelve bien IPv4Addr
        String[] aux=nic.getIPv4addr();
-       return aux[0];
+      String j= aux[0];
+     return j;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class NIC implements iNIC {
     @Override
     public String ToJson() {
        
-        return String.format("{\"Ipv4\":%d,\"Mac Adress\":%d,\"Nombre\":%s}",this.getIPv4(),this.getMACAdress(),this.getNombre());
+        return String.format("{\"Ipv4\":%s,\"Mac Adress\":%s,\"Nombre\":%s}",this.getIPv4(),this.getMACAdress(),this.getNombre());
                 
     }
 

@@ -50,7 +50,16 @@ public abstract class Networking implements iNetworking
     @Override
     public String ToJson()
     {
-	return null;
+	String g="";
+        
+        for(iNIC nn:this.getNics()){
+            
+            
+            g+=nn.ToJson();
+            
+        }
+         
+        return g;
     }
     
     

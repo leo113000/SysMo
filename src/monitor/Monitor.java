@@ -5,6 +5,8 @@
  */
 package monitor;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author turin
@@ -17,6 +19,7 @@ public abstract class Monitor implements JsonSerializable
     iOS osMonitor;
     iNetworking networkingMonitor;
     iSensores sensMonitor;
+    ArrayList<JsonSerializable> serializables;
 
     public Monitor(iCPU cpuMonitor, iMemoria memMonitor, iMother motherMonitor,iNetworking nicMonitor, iOS osMonitor,  iSensores sensMonitor)
     {
@@ -26,12 +29,10 @@ public abstract class Monitor implements JsonSerializable
 	this.osMonitor = osMonitor;
 	this.networkingMonitor = nicMonitor;
 	this.sensMonitor = sensMonitor;
-    }
-    
-    public Monitor(iCPU ma)
-    {
+        serializables=new ArrayList();
         
     }
+    
 
     public iCPU getCpuMonitor() {
         return cpuMonitor;
@@ -80,9 +81,28 @@ public abstract class Monitor implements JsonSerializable
     public void setSensMonitor(iSensores sensMonitor) {
         this.sensMonitor = sensMonitor;
     }
+    public void SetSerializable(){
+        this.serializables.add(this.cpuMonitor);
+        this.serializables.add(this.memMonitor);
+        this.serializables.add(this.motherMonitor);
+        this.serializables.add(this.networkingMonitor);
+        this.serializables.add(this.osMonitor);
+        this.serializables.add(this.sensMonitor);
+        
+        for(JsonSerializable js:serializables){
+            
+            System.out.println(js.ToJson());
+            
+        }
+        
+        
+    }
 
     @Override
     public String ToJson() {
+        
+        
+        
         
        return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s}",this.cpuMonitor.ToJson(),this.memMonitor.ToJson(),this.motherMonitor.ToJson(),this.networkingMonitor.ToJson(),this.osMonitor.ToJson(),this.sensMonitor.ToJson());
     
