@@ -14,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import monitor.AbstractGraphics;
 
 /**
@@ -22,29 +24,31 @@ import monitor.AbstractGraphics;
  */
 class WindowsGraphics extends AbstractGraphics
 {
+    private final String MANUFACTURER = "Manufacturer";
+    private final String MODEL = "Card name";
 
-    private String manufacturer;
-    private String model;
-
-    private String vendorID;
-    private String deviceID;
-
-    //Unicos de Windows
+    private final String VENDORID = "Vendor ID";
+    private final String DEVICEID = "Device ID";
+    
+    private final String DISPLAYMEMORY = "Display Memory";
+    private final String DEDICATEDMEMORY = "Dedicated Memory";
+    private final String SHAREDMEMORY = "Shared Memory";
+    
+    
     private String directX;
-    private String displayMemory;
-    private String dedicatedMemory;
-    private String sharedMemory;
 
+    Map<String,String> atributos;
+    
     @Override
     public String getManufacturer()
     {
-	return manufacturer;
+	return atributos.get(MANUFACTURER);
     }
 
     @Override
     public String getModel()
     {
-	return model;
+	return atributos.get(MODEL);
     }
 
     @Override
@@ -56,25 +60,28 @@ class WindowsGraphics extends AbstractGraphics
     @Override
     public String getDisplayMemory()
     {
-	return displayMemory;
+	return atributos.get(DISPLAYMEMORY);
     }
 
     @Override
     public String getDedicatedMemory()
     {
-	return dedicatedMemory;
+	return atributos.get(DEDICATEDMEMORY);
     }
 
     @Override
     public String getSharedMemory()
     {
-	return sharedMemory;
+	return atributos.get(SHAREDMEMORY);
     }
 
     @Override
     public String getHardwareID()
     {
-	return vendorID + ":" + deviceID;
+	String v=atributos.get(VENDORID);
+	String d=atributos.get(DEVICEID);
+	
+	return  "".equals(v) || "".equals(d) ? "" : v + ":" + d;
     }
 
     @Override
@@ -83,15 +90,41 @@ class WindowsGraphics extends AbstractGraphics
 	return null;
     }
 
-    WindowsGraphics() throws IOException
+    WindowsGraphics()
     {
-
 	ArrayList<String> datos = obtainAllGPUData();//Para que se recolecte toda la información
-
+	
+	atributos=new HashMap<>();
+	
 	//Y se construyen el resto de objetos
-	constructData(datos);
+	callConstructData(datos);
     }
-
+    
+    private void callConstructData(ArrayList<String> datos)
+    {
+	if(datos==null)
+	{
+	    createEmptyObject();
+	}else
+	{
+	    constructData(datos);
+	}
+    }
+    
+    private void createEmptyObject()
+    {
+	System.out.println("Creando objeto vacio de Graphics");
+	directX="";
+	
+	ArrayList<String> fields=createFields();
+	
+	for (String field : fields)
+	{
+	    atributos.put(field, "");
+	}
+	
+    }
+    
     private void constructData(ArrayList<String> datos)
     {
 	ArrayList<String> fields = createFields(); //Se cream los campos para comparar y extraer
@@ -102,36 +135,18 @@ class WindowsGraphics extends AbstractGraphics
 	    {
 		String currField = fields.get(i);//Guardo en una variable el campo aca
 
-		if (iString.contains(currField)) //si la linea de los datos en la que estoy posicionado tiene el dato
+		if (iString.contains(VENDORID) || iString.contains(DEVICEID)) //si la linea de los datos en la que estoy posicionado tiene el dato
 		{
-		    switch (currField) //Asigna el dato en el atributo indicado
-		    {
+		    atributos.put(currField,cortarDespuesDe(iString,"0x"));
 
-			case "Card name":
-			    this.model = cortarDespuesDe(iString, ": ");
-			    break;
-			case "Manufacturer":
-			    this.manufacturer = cortarDespuesDe(iString, ": ");
-			    break;
-			case "Display Memory":
-			    this.displayMemory = cortarDespuesDe(iString, ": ");
-			    break;
-			case "Dedicated Memory":
-			    this.dedicatedMemory = cortarDespuesDe(iString, ": ");
-			    break;
-			case "Shared Memory":
-			    this.sharedMemory = cortarDespuesDe(iString, ": ");
-			    break;
-			case "Vendor ID":
-			    this.vendorID = cortarDespuesDe(iString.trim(), "0x");
-			    break;
-			case "Device ID":
-			    this.deviceID = cortarDespuesDe(iString, "0x");
-			    break;
-		    }
+		    fields.remove(i);
+		}else if(iString.contains(currField))
+		{
+		    atributos.put(currField,cortarDespuesDe(iString,": "));
 
 		    fields.remove(i);
 		}
+		
 	    }
 	}
     }
@@ -151,41 +166,71 @@ class WindowsGraphics extends AbstractGraphics
 	return fields;
     }
 
-    private ArrayList<String> obtainAllGPUData() throws IOException
+    private ArrayList<String> obtainAllGPUData()
     {
 	ArrayList<String> datos = new ArrayList<>();
 
 	String textFile = "./yourTextFile.txt"; //El path del archivo
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dxdiag", "/t", textFile); //Se construye el proceso
-	Process p = pb.start(); //Se inicia ese proceso, va  a escribir un archivo de texto
-
-	BufferedReader br = new BufferedReader(new FileReader(textFile));  //Se lee ese archivo de texto a un buffer
-
-	String line;
-
-	while ((line = br.readLine()) != null)
+	Process p;
+	
+	try
 	{
-	    if (line.contains("DirectX Version")) //Cuendo detecta la info del DirectX
-	    {
-		directX = cortarDespuesDe(line, ": "); //Extrae el dato
-	    }
-
-	    if (line.contains("Display Devices")) //Cuando encuentra la leyenda 
-	    {
-
-		while (!line.contains("Sound Devices") && (line = br.readLine()) != null)
-		{
-		    datos.add(line); //Guarda todas las lineas de esa sección, hasta que se acabe o cambie de seccion
-		}
-	    }
-
+	    p = pb.start(); //Se inicia ese proceso, va  a escribir un archivo de texto
+	    esperarProceso(p);
+	} catch (IOException ex)
+	{
+	    System.err.println("Error iniciando la extracción");
 	}
 
-	br.close(); //Se cierra el archivo
+	
+	try
+	{
+	    BufferedReader br = new BufferedReader(new FileReader(textFile));  //Se lee ese archivo de texto a un buffer
+	    String line;
 
-	borrarArchivo(new File(textFile).toPath()); //Se borra el .txt creado oportunamente
+	    while ((line = br.readLine()) != null)
+	    {
+		if (line.contains("DirectX Version")) //Cuendo detecta la info del DirectX
+		{
+		    directX = cortarDespuesDe(line, ": "); //Extrae el dato
+		}
 
-	return datos;
+		if (line.contains("Display Devices")) //Cuando encuentra la leyenda 
+		{
+
+		    while (!line.contains("Sound Devices") && (line = br.readLine()) != null)
+		    {
+			datos.add(line); //Guarda todas las lineas de esa sección, hasta que se acabe o cambie de seccion
+		    }
+		}
+
+	    }
+
+	    br.close(); //Se cierra el archivo
+
+	    borrarArchivo(new File(textFile).toPath()); //Se borra el .txt creado oportunamente
+
+	} catch (IOException e)
+	{
+	    System.out.println("Error inesperado con la apertura del archivo");
+	    datos=null;
+	}
+	
+	   return datos; 
+	
+	
+    }
+
+    private void esperarProceso(Process p)
+    {
+	try
+	{
+	    p.waitFor(); //espera que el proceso anterior termine
+	} catch (InterruptedException e)
+	{
+	    System.err.println("Ocurrió un error \"inesperado\" al obtener los datos de la GPU");
+	}
     }
 
     private void borrarArchivo(Path path)
