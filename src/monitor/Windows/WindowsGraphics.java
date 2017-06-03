@@ -20,7 +20,7 @@ import monitor.AbstractGraphics;
  *
  * @author Alien
  */
-public class WindowsGraphics extends AbstractGraphics
+class WindowsGraphics extends AbstractGraphics
 {
 
     private String manufacturer;

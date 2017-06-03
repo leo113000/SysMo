@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import monitor.AbstractGraphics;
 
 /**
@@ -19,23 +21,25 @@ import monitor.AbstractGraphics;
 class LinuxGraphics extends AbstractGraphics
 {
 
+    private final String DRIVERID = "DRIVER";
+    private final String HARDWAREID = "PCI_ID";
+    private final String VENDOR = "VENDOR";
+    private final String MODEL = "MODEL";
+
     private String pciID;
 
-    private String driverID;
-    private String hardwareID;
-    private String vendor;
-    private String model;
+    Map<String, String> atributos;
 
     @Override
     public String getManufacturer()
     {
-	return vendor;
+	return atributos.get(VENDOR);
     }
 
     @Override
     public String getModel()
     {
-	return model;
+	return atributos.get(MODEL);
     }
 
     @Override
@@ -65,17 +69,20 @@ class LinuxGraphics extends AbstractGraphics
     @Override
     public String getHardwareID()
     {
-	return hardwareID;
+	//return hardwareID;
+	return atributos.get(HARDWAREID);
     }
 
     @Override
     public String getDriverID()
     {
-	return driverID;
+	return atributos.get(DRIVERID);
     }
 
     LinuxGraphics() throws IOException
     {
+	atributos = new HashMap<>();
+
 	this.pciID = obtainPciNumber(); //Primero se obtiene el PCI path
 
 	ArrayList<String> datos = obtainAllGPUData();//Para que se recolecte toda la información
@@ -86,8 +93,7 @@ class LinuxGraphics extends AbstractGraphics
 
     private void constructData(ArrayList<String> datos)
     {
-	ArrayList<String> fields =createFields(); //Creo los campos para comparar y extraer
-
+	ArrayList<String> fields = createFields(); //Creo los campos para comparar y extraer
 
 	for (String iString : datos) //Por cada linea de todos los datos
 	{
@@ -97,43 +103,27 @@ class LinuxGraphics extends AbstractGraphics
 
 		if (iString.contains(currField)) //si la linea de los datos en la que estoy posicionado tiene el dato
 		{
-		    switch (currField) //Asigna el dato en el atributo indicado
-		    {
-			case "DRIVER":
-			    this.driverID = cortarDespuesDe(iString, "=");
-			    ;
-			    break;
-			case "PCI_ID":
-			    this.hardwareID = cortarDespuesDe(iString, "=");
-			    break;
-			case "VENDOR":
-			    this.vendor = cortarDespuesDe(iString, "=");
-			    ;
-			    break;
-			case "MODEL":
-			    this.model = cortarDespuesDe(iString, "=");
-			    ;
-			    break;
-		    }
+
+		    atributos.put(currField, cortarDespuesDe(iString, "="));
 
 		    fields.remove(i);
 		}
 	    }
 	}
     }
-    
-     private ArrayList<String> createFields()
+
+    private ArrayList<String> createFields()
     {
 	ArrayList<String> fields = new ArrayList<>();
 
-	fields.add("DRIVER");
-	fields.add("PCI_ID");
-	fields.add("VENDOR");
-	fields.add("MODEL");
+	fields.add(DRIVERID);
+	fields.add(HARDWAREID);
+	fields.add(VENDOR);
+	fields.add(MODEL);
 
 	return fields;
     }
-    
+
     private String obtainPciNumber() throws IOException
     {
 	String retorno = null;
@@ -148,7 +138,7 @@ class LinuxGraphics extends AbstractGraphics
 
 	while ((line = br.readLine()) != null)
 	{
-	    if (line.contains("bus info"))
+	    if (line.contains("info"))
 	    {
 		retorno = cortarDespuesDe(line, "@"); //Corto despues del @ para obtener el PCI #
 	    }
