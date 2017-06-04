@@ -5,6 +5,9 @@
  */
 package monitor;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  *
  * @author Leo J. Vazquez
@@ -12,6 +15,7 @@ package monitor;
 public abstract class AbstractGraphics
 {
     
+    protected Map<String,String> atributos;
     
     public abstract String getManufacturer();
     public abstract String getModel();
@@ -26,6 +30,34 @@ public abstract class AbstractGraphics
     
     public abstract String getHardwareID();
     public abstract String getDriverID();
+        
+    protected abstract void constructData(ArrayList <String> datos);
+    protected abstract ArrayList<String> createFields();
+    
+    protected void createEmptyObject()
+    {
+	System.out.println("Creando objeto vacio de Graphics");
+	
+	ArrayList<String> fields=createFields();
+	
+	for (String field : fields)
+	{
+	    atributos.put(field, "");
+	}
+	
+    }
+        
+    protected void callConstructData(ArrayList<String> datos)
+    {
+	if(datos==null)
+	{
+	    createEmptyObject();
+	}else
+	{
+	    constructData(datos);
+	}
+    }
+    
     
     protected String cortarDespuesDe(String line, String regex)
     {
@@ -33,4 +65,5 @@ public abstract class AbstractGraphics
 
 	return lineas[1];
     }
+    
 }

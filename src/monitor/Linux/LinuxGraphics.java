@@ -11,14 +11,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import monitor.AbstractGraphics;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-class LinuxGraphics extends AbstractGraphics
+public class LinuxGraphics extends AbstractGraphics
 {
 
     private final String DRIVERID = "DRIVER";
@@ -27,8 +26,6 @@ class LinuxGraphics extends AbstractGraphics
     private final String MODEL = "MODEL";
 
     private String pciID;
-
-    Map<String, String> atributos;
 
     @Override
     public String getManufacturer()
@@ -45,25 +42,25 @@ class LinuxGraphics extends AbstractGraphics
     @Override
     public String getDirectX()
     {
-	return null;
+	return "";
     }
 
     @Override
     public String getDisplayMemory()
     {
-	return null;
+	return "";
     }
 
     @Override
     public String getDedicatedMemory()
     {
-	return null;
+	return "";
     }
 
     @Override
     public String getSharedMemory()
     {
-	return null;
+	return "";
     }
 
     @Override
@@ -79,19 +76,20 @@ class LinuxGraphics extends AbstractGraphics
 	return atributos.get(DRIVERID);
     }
 
-    LinuxGraphics() throws IOException
+    public LinuxGraphics()
     {
 	atributos = new HashMap<>();
 
 	this.pciID = obtainPciNumber(); //Primero se obtiene el PCI path
 
 	ArrayList<String> datos = obtainAllGPUData();//Para que se recolecte toda la información
-
+	
 	//Y se construyen el resto de objetos
-	constructData(datos);
+	callConstructData(datos);
     }
 
-    private void constructData(ArrayList<String> datos)
+    @Override
+    protected void constructData(ArrayList<String> datos)
     {
 	ArrayList<String> fields = createFields(); //Creo los campos para comparar y extraer
 
@@ -104,7 +102,7 @@ class LinuxGraphics extends AbstractGraphics
 		if (iString.contains(currField)) //si la linea de los datos en la que estoy posicionado tiene el dato
 		{
 
-		    atributos.put(currField, cortarDespuesDe(iString, "="));
+		    atributos.put(currField, cortarDespuesDe(iString, "=")); //Asigno los datos al HashMap
 
 		    fields.remove(i);
 		}
@@ -112,7 +110,8 @@ class LinuxGraphics extends AbstractGraphics
 	}
     }
 
-    private ArrayList<String> createFields()
+    @Override
+    protected ArrayList<String> createFields()
     {
 	ArrayList<String> fields = new ArrayList<>();
 
@@ -124,46 +123,61 @@ class LinuxGraphics extends AbstractGraphics
 	return fields;
     }
 
-    private String obtainPciNumber() throws IOException
+    private String obtainPciNumber()
     {
 	String retorno = null;
-
-	Process process = Runtime.getRuntime().exec("lshw -C display");  //Esta línea corre el comando
-	InputStream inputstream = process.getInputStream(); //Toma el flujo generado del proceso
-
-	InputStreamReader isr = new InputStreamReader(inputstream); //Se inserta en un lector de flujo
-	BufferedReader br = new BufferedReader(isr); //Se pasa a un Buffer
-
-	String line;  //Leo la linea
-
-	while ((line = br.readLine()) != null)
+	try
 	{
-	    if (line.contains("info"))
+	    Process process = Runtime.getRuntime().exec("lshw -C display");  //Esta línea corre el comando
+	    InputStream inputstream = process.getInputStream(); //Toma el flujo generado del proceso
+
+	    InputStreamReader isr = new InputStreamReader(inputstream); //Se inserta en un lector de flujo
+	    BufferedReader br = new BufferedReader(isr); //Se pasa a un Buffer
+
+	    String line;  //Leo la linea
+
+	    while ((line = br.readLine()) != null)
 	    {
-		retorno = cortarDespuesDe(line, "@"); //Corto despues del @ para obtener el PCI #
+		if (line.contains("info"))
+		{
+		    retorno = cortarDespuesDe(line, "@"); //Corto despues del @ para obtener el PCI #
+		}
 	    }
+	} catch (Exception e)
+	{
+	    System.out.println("Error en la creación del objeto");
+	    retorno = null;
 	}
 
 	return retorno;
     }
 
-    private ArrayList<String> obtainAllGPUData() throws IOException
+    private ArrayList<String> obtainAllGPUData()
     {
-	String script = String.format("udevadm info -q property -p /sys/bus/pci/devices/%s", pciID);
+	ArrayList<String> datos;
 
-	ArrayList<String> datos = new ArrayList<>();
-
-	Process process = Runtime.getRuntime().exec(script);  //Esta línea corre el comando
-	InputStream inputstream = process.getInputStream(); //Toma el flujo generado del proceso
-
-	InputStreamReader isr = new InputStreamReader(inputstream); //Se inserta en un lector de flujo
-	BufferedReader br = new BufferedReader(isr); //Se pasa a un Buffer
-
-	String line;
-
-	while ((line = br.readLine()) != null)
+	try
 	{
-	    datos.add(line); //Cada linea se pasa a un arreglo de Strings
+	    String script = String.format("udevadm info -q property -p /sys/bus/pci/devices/%s", pciID);
+
+	    datos = new ArrayList<>();
+
+	    Process process = Runtime.getRuntime().exec(script);  //Esta línea corre el comando
+	    InputStream inputstream = process.getInputStream(); //Toma el flujo generado del proceso
+
+	    InputStreamReader isr = new InputStreamReader(inputstream); //Se inserta en un lector de flujo
+	    BufferedReader br = new BufferedReader(isr); //Se pasa a un Buffer
+
+	    String line;
+
+	    while ((line = br.readLine()) != null)
+	    {
+		datos.add(line); //Cada linea se pasa a un arreglo de Strings
+	    }
+	} catch (Exception e)
+	{
+	    System.out.println("Error en obtención de datos");
+	    datos = null;
 	}
 
 	return datos;

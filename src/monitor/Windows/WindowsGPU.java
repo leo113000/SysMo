@@ -15,7 +15,7 @@ import monitor.GPU;
 public class WindowsGPU extends GPU
 {
     
-    public WindowsGPU() throws IOException
+    public WindowsGPU()
     {
 	super(new WindowsGraphics());
     }

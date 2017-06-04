@@ -36,8 +36,6 @@ class WindowsGraphics extends AbstractGraphics
     
     
     private String directX;
-
-    Map<String,String> atributos;
     
     @Override
     public String getManufacturer()
@@ -87,10 +85,10 @@ class WindowsGraphics extends AbstractGraphics
     @Override
     public String getDriverID()
     {
-	return null;
+	return "";
     }
 
-    WindowsGraphics()
+    public WindowsGraphics()
     {
 	ArrayList<String> datos = obtainAllGPUData();//Para que se recolecte toda la información
 	
@@ -100,32 +98,17 @@ class WindowsGraphics extends AbstractGraphics
 	callConstructData(datos);
     }
     
-    private void callConstructData(ArrayList<String> datos)
+    
+    @Override
+    protected void createEmptyObject()
     {
-	if(datos==null)
-	{
-	    createEmptyObject();
-	}else
-	{
-	    constructData(datos);
-	}
+	super.createEmptyObject();
+	
+	directX="";	
     }
     
-    private void createEmptyObject()
-    {
-	System.out.println("Creando objeto vacio de Graphics");
-	directX="";
-	
-	ArrayList<String> fields=createFields();
-	
-	for (String field : fields)
-	{
-	    atributos.put(field, "");
-	}
-	
-    }
-    
-    private void constructData(ArrayList<String> datos)
+    @Override
+    protected void constructData(ArrayList<String> datos)
     {
 	ArrayList<String> fields = createFields(); //Se cream los campos para comparar y extraer
 
@@ -151,7 +134,8 @@ class WindowsGraphics extends AbstractGraphics
 	}
     }
 
-    private ArrayList<String> createFields()
+    @Override
+    protected  ArrayList<String> createFields()
     {
 	ArrayList<String> fields = new ArrayList<>();
 

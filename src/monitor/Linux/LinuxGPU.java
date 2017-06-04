@@ -15,7 +15,7 @@ import monitor.GPU;
 public class LinuxGPU extends GPU
 {
     
-    public LinuxGPU() throws IOException
+    public LinuxGPU()
     {
 	super(new LinuxGraphics());
     }
