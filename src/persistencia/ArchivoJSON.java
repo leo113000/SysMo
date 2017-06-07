@@ -16,22 +16,27 @@ import java.nio.file.Paths;
  *
  * @author turin
  */
-public class ArchivoJSON {
-
-    private static FileWriter file;
+public class ArchivoJSON extends ArchivoTexto {
     
+    private String json;
+
+   
+    
+    public ArchivoJSON(String Js) throws IOException{
+        super("/tmp/test.Json");
+        this.json=Js;
+    }
+    
+      public void Create() throws IOException{
+         this.Write(this.json);
+          
+      }
     /**
      * Escribe la cadena JSON en el archivo
      * @param cadenaJson
      * @throws IOException 
      */
-    public void escribir(String cadenaJson) throws IOException {
-        this.abrir();
-        /*
-        ....
-        */
-        
-    }
+    
     
     /**
      * Devuelve la cadena JSON asociada a la clave provista
