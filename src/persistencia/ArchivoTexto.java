@@ -7,55 +7,43 @@ package persistencia;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  *
  * @author dario
  */
 public class ArchivoTexto {
+    protected FileWriter file;
+    protected String extention;
     
-    private FileWriter file=null;
-    protected String extention=null;
-    
-    public ArchivoTexto()throws IOException{
-        
-        this(".txt");
-        
-        
+    public ArchivoTexto(){
+        this.extention=".txt";
     }
-    
-    public ArchivoTexto(String ext){
-        
-        this.extention=ext;
-    }
-    
-    public void escribir(String cadena) throws IOException{
-        
+    public ArchivoTexto(String path) throws IOException{
         try{
-            file.append(cadena);
-           
-      }
+        file=new FileWriter(path);
+        }
         catch(IOException e){
+            System.out.println("---Create File Error---");
             throw e;
         }
+    
     }
-        @Override
-    
-        public void finalize(){
-    
-            
-            
-        }
-
-        
-        
-        
-        
-        
-        
+    public void Write(String contain) throws IOException{
+       try{ 
+        file.append(contain);
+       }
+       catch(IOException e){
+           System.out.println("---Write Error---");
+           throw e;
+           
+       }
+       
+           file.flush();
+           file.close();
+       
     }
     
-        
     
+     
 }

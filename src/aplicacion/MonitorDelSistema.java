@@ -9,6 +9,7 @@ import monitor.Monitor;
 import monitor.iNIC;
 import monitor.iNetworking;
 import oshi.SystemInfo;
+import persistencia.ArchivoJSON;
 import ui.Home;
 
 /**
@@ -39,7 +40,20 @@ public class MonitorDelSistema {
 	/*
         Aquí preparo un hashmap con los argumentos de entrada de la aplicación
         */  
+      
+        
+        /*-------------------------------------------------------------
+       
+        Monitor testing=new MonitorLinux();
+        ArchivoJSON testt=new ArchivoJSON(testing.ToJson());
+        testt.Create();
+        
+        // Este moniTor lo use para testear la creacion del archivo JSon, esta
+        guardando el archivo en la carpeta temporal porque hay confictos de 
+        permisos, NO TOMA DATOS DE LA GPU
+       ------------------------------------------------- */
 	
+        
         HashMap<String, String> argumentos = new HashMap<>();
         //A cada string parámetro lo divido en el igual y uso el miembro de la 
         //izquierda como clave y al de la derecha como valor en el hashmap
