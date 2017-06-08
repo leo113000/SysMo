@@ -25,7 +25,7 @@ public class Home extends javax.swing.JFrame {
         this();
         this.monitor = monitor;
         
-        lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU()? "64 bit":"32 bit" );
+        //lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU()? "64 bit":"32 bit" );
         lblCpuMarca.setText(monitor.getCpuMonitor().getFabricanteCPU());
         lblCpuModelo.setText(monitor.getCpuMonitor().getModeloCPU());
         lblCpuNucleosFisicos.setText(monitor.getCpuMonitor().getNucleosFisicosCPU().toString());

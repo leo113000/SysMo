@@ -17,6 +17,6 @@ public interface iCPU extends JsonSerializable
     Integer getNucleosLogicosCPU();
     Integer getNucleosFisicosCPU();
     Double getUsoActualCPU();
-    Boolean getArquitecturaCPU();
+    String getArquitecturaCPU();
     
 }

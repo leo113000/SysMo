@@ -15,7 +15,7 @@ public class MonitorWindows extends Monitor {
 
     public MonitorWindows()
     {
-	super(new WindowsCPU(),new WindowsMem(), new WindowsMother(), new WindowsNetworking(), new WindowsOS(),new WindowsSens());
+	super(new WindowsCPU(),new WindowsGPU(),new WindowsMem(), new WindowsMother(), new WindowsNetworking(), new WindowsOS(),new WindowsSens());
 	//Pasar los valores a la clase padre instanciando objetos directamente
 	
     }

@@ -155,7 +155,7 @@ class WindowsGraphics extends AbstractGraphics
 	ArrayList<String> datos = new ArrayList<>();
 
 	String textFile = "./yourTextFile.txt"; //El path del archivo
-	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dxdiag", "/t", textFile); //Se construye el proceso
+	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c","dxdiag","whql:off", "/t", textFile); //Se construye el proceso
 	Process p;
 	
 	try

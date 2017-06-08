@@ -13,7 +13,9 @@ import java.util.ArrayList;
  */
 public abstract class Monitor implements JsonSerializable
 {
+
     iCPU cpuMonitor;
+    iGPU gpuMonitor;
     iMemoria memMonitor;
     iMother motherMonitor;
     iOS osMonitor;
@@ -21,94 +23,80 @@ public abstract class Monitor implements JsonSerializable
     iSensores sensMonitor;
     ArrayList<JsonSerializable> serializables;
 
-    public Monitor(iCPU cpuMonitor, iMemoria memMonitor, iMother motherMonitor,iNetworking nicMonitor, iOS osMonitor,  iSensores sensMonitor)
+    public Monitor(iCPU cpuMonitor, iGPU gpuMonitor, iMemoria memMonitor, iMother motherMonitor, iNetworking nicMonitor, iOS osMonitor, iSensores sensMonitor)
     {
 	this.cpuMonitor = cpuMonitor;
+	this.gpuMonitor = gpuMonitor;
 	this.memMonitor = memMonitor;
 	this.motherMonitor = motherMonitor;
 	this.osMonitor = osMonitor;
 	this.networkingMonitor = nicMonitor;
 	this.sensMonitor = sensMonitor;
-        serializables=new ArrayList();
-        
+	serializables = new ArrayList();
+
+    }
+
+    public iCPU getCpuMonitor()
+    {
+	return cpuMonitor;
+    }
+
+    public iGPU getGpuMonitor()
+    {
+	return gpuMonitor;
     }
     
-
-    public iCPU getCpuMonitor() {
-        return cpuMonitor;
+    
+    public iMemoria getMemMonitor()
+    {
+	return memMonitor;
     }
 
-    public void setCpuMonitor(iCPU cpuMonitor) {
-        this.cpuMonitor = cpuMonitor;
+    public iMother getMotherMonitor()
+    {
+	return motherMonitor;
     }
 
-    public iMemoria getMemMonitor() {
-        return memMonitor;
+    public iOS getOsMonitor()
+    {
+	return osMonitor;
     }
 
-    public void setMemMonitor(iMemoria memMonitor) {
-        this.memMonitor = memMonitor;
+    public iNetworking getNetworkingMonitor()
+    {
+	return networkingMonitor;
     }
 
-    public iMother getMotherMonitor() {
-        return motherMonitor;
+    public iSensores getSensMonitor()
+    {
+	return sensMonitor;
     }
 
-    public void setMotherMonitor(iMother motherMonitor) {
-        this.motherMonitor = motherMonitor;
-    }
+    public void SetSerializable()
+    {
+	this.serializables.add(this.cpuMonitor);
+	this.serializables.add(this.gpuMonitor);
+	this.serializables.add(this.memMonitor);
+	this.serializables.add(this.motherMonitor);
+	this.serializables.add(this.networkingMonitor);
+	this.serializables.add(this.osMonitor);
+	this.serializables.add(this.sensMonitor);
 
-    public iOS getOsMonitor() {
-        return osMonitor;
-    }
+	for (JsonSerializable js : serializables)
+	{
 
-    public void setOsMonitor(iOS osMonitor) {
-        this.osMonitor = osMonitor;
-    }
+	    System.out.println(js.ToJson());
 
-    public iNetworking getNicMonitor() {
-        return networkingMonitor;
-    }
+	}
 
-    public void setNicMonitor(iNetworking nicMonitor) {
-        this.networkingMonitor = nicMonitor;
-    }
-
-    public iSensores getSensMonitor() {
-        return sensMonitor;
-    }
-
-    public void setSensMonitor(iSensores sensMonitor) {
-        this.sensMonitor = sensMonitor;
-    }
-    public void SetSerializable(){
-        this.serializables.add(this.cpuMonitor);
-        this.serializables.add(this.memMonitor);
-        this.serializables.add(this.motherMonitor);
-        this.serializables.add(this.networkingMonitor);
-        this.serializables.add(this.osMonitor);
-        this.serializables.add(this.sensMonitor);
-        
-        for(JsonSerializable js:serializables){
-            
-            System.out.println(js.ToJson());
-            
-        }
-        
-        
     }
 
     @Override
-    public String ToJson() {
-        
-        
-        
-        
-       return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s}",this.cpuMonitor.ToJson(),this.memMonitor.ToJson(),this.motherMonitor.ToJson(),this.networkingMonitor.ToJson(),this.osMonitor.ToJson(),this.sensMonitor.ToJson());
-    
-        
-    
+    public String ToJson()
+    {
+
+	return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s}", this.cpuMonitor.ToJson(), this.memMonitor.ToJson(), this.motherMonitor.ToJson(), this.networkingMonitor.ToJson(), this.osMonitor.ToJson(), this.sensMonitor.ToJson());
+
     }
 
-    
 }

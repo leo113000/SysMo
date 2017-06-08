@@ -7,24 +7,18 @@ package monitor.Linux;
 
 import monitor.Monitor;
 
-
 /**
  *
  * @author turin
  */
-public class MonitorLinux extends Monitor {
-    
- 
+public class MonitorLinux extends Monitor
+{
 
     public MonitorLinux()
     {
-	super(new LinuxCPU(),new LinuxMem(),new LinuxMother(),new LinuxNetworking(),new LinuxOS(),new LinuxSens());   
+	super(new LinuxCPU(), new LinuxGPU(), new LinuxMem(), new LinuxMother(), new LinuxNetworking(), new LinuxOS(), new LinuxSens());
 
 	//Pasar los valores a la clase padre con inicializador estático
     }
 
-    
-   
-    
-    
 }

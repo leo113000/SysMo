@@ -46,14 +46,16 @@ public abstract class CPU implements iCPU
 
     @Override
     public Double getUsoActualCPU() {
-        return cpu.getSystemCpuLoad();
+        
+	Double rta=cpu.getSystemCpuLoad()*100; //El valor del uso con doble presición
+	return Math.rint(rta*100)/100; //esto lo que hace es dejarlo con dos decimales
     }
     
     @Override
     
-    public Boolean getArquitecturaCPU(){
-        
-        return cpu.isCpu64bit();
+    public String getArquitecturaCPU(){
+	
+	return cpu.isCpu64bit()? "x64" : "x86";
         
     }
 
