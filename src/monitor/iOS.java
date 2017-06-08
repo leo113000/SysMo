@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iOS
+public interface iOS extends JsonSerializable
 {
   String getFamiliaOS  ();
   String getVersionOS();

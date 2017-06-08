@@ -47,4 +47,21 @@ public abstract class Networking implements iNetworking
 	return nics;
     }
 
+    @Override
+    public String ToJson()
+    {
+	String g="";
+        
+        for(iNIC nn:this.getNics()){
+            
+            
+            g+=nn.ToJson();
+            
+        }
+         
+        return g;
+    }
+    
+    
+
 }

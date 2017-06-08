@@ -6,36 +6,55 @@
 package monitor;
 
 import oshi.hardware.NetworkIF;
-import oshi.hardware.Networks;
 
 /**
  *
  * @author Usuario
  */
-public class NIC implements iNIC {
+public class NIC implements iNIC
+{
 
     private NetworkIF nic;
 
-    public NIC(NetworkIF nic) {
-        this.nic = nic;
+    public NIC(NetworkIF nic)
+    {
+	this.nic = nic;
     }
 
     @Override
-    public String getIPv4() {
+    public String getIPv4()
+    {
 
-	//Ver que devuelve bien IPv4Addr
-       String[] aux=nic.getIPv4addr();
-       return aux[0];
+	String[] aux = nic.getIPv4addr();
+
+	String rta = "";
+
+	for (String s : aux)
+	{
+	    rta += s;
+	}
+
+	return rta;
     }
 
     @Override
-    public String getMACAdress() {
-        return nic.getMacaddr(); 
+    public String getMACAdress()
+    {
+	return nic.getMacaddr();
     }
 
     @Override
-    public String getNombre() {
-        return nic.getName();
+    public String getNombre()
+    {
+	return nic.getName();
+    }
+
+    @Override
+    public String ToJson()
+    {
+
+	return String.format("{\"Ipv4\":%s,\"Mac Adress\":%s,\"Nombre\":%s}", this.getIPv4(), this.getMACAdress(), this.getNombre());
+
     }
 
 }

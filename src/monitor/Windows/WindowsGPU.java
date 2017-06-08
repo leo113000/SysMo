@@ -3,14 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package monitor;
+package monitor.Windows;
+
+import java.io.IOException;
+import monitor.GPU;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-public interface iMother extends JsonSerializable
+public class WindowsGPU extends GPU
 {
-    String getMarcaMother();
-    String getModeloMother();
+    
+    public WindowsGPU()
+    {
+	super(new WindowsGraphics());
+    }
+
+    
+    
 }

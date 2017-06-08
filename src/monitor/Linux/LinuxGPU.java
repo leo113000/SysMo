@@ -3,14 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package monitor;
+package monitor.Linux;
+
+import java.io.IOException;
+import monitor.GPU;
 
 /**
  *
  * @author Leo J. Vazquez
  */
-public interface iMother extends JsonSerializable
+public class LinuxGPU extends GPU
 {
-    String getMarcaMother();
-    String getModeloMother();
+    
+    public LinuxGPU()
+    {
+	super(new LinuxGraphics());
+    }
+    
 }

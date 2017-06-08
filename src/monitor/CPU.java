@@ -46,7 +46,30 @@ public abstract class CPU implements iCPU
 
     @Override
     public Double getUsoActualCPU() {
-        return cpu.getSystemCpuLoad();
+        
+	Double rta=cpu.getSystemCpuLoad()*100; //El valor del uso con doble presición
+	return Math.rint(rta*100)/100; //esto lo que hace es dejarlo con dos decimales
+    }
+    
+    @Override
+    
+    public String getArquitecturaCPU(){
+	
+	return cpu.isCpu64bit()? "x64" : "x86";
+        
+    }
+
+    @Override
+    public String ToJson() {
+        
+        
+        int Nf=this.getNucleosFisicosCPU();
+        int Nl =this.getNucleosLogicosCPU();
+        
+         return String.format("{\"Nucleos Fisicos:\":%d,\"Nucleos Logicos :\":%d}",Nf,Nl);
+    
+        
+    
     }
     
 }

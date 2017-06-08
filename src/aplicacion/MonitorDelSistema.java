@@ -3,10 +3,13 @@ package aplicacion;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.JFrame;
-import static javax.swing.text.html.HTML.Tag.HEAD;
+import monitor.Linux.LinuxNetworking;
 import monitor.Linux.MonitorLinux;
 import monitor.Monitor;
+import monitor.iNIC;
+import monitor.iNetworking;
 import oshi.SystemInfo;
+import persistencia.ArchivoJSON;
 import ui.Home;
 
 /**
@@ -21,7 +24,7 @@ public class MonitorDelSistema {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws InterruptedException, IOException, Exception {
-
+      
         //Bloque para probar metodo de redes
 //	Networks leo=new LinuxNetworks();
 //	NetworkIF[] leox=leo.getNetworks();
@@ -34,11 +37,23 @@ public class MonitorDelSistema {
 	
 	System.out.println(nics[0].getIPv4());
 
->>>>>>> b160e070143c7813f36034e444271041241b80ea
 	/*
         Aquí preparo un hashmap con los argumentos de entrada de la aplicación
         */  
+      
+        
+        /*-------------------------------------------------------------
+       
+        Monitor testing=new MonitorLinux();
+        ArchivoJSON testt=new ArchivoJSON(testing.ToJson());
+        testt.Create();
+        
+        // Este moniTor lo use para testear la creacion del archivo JSon, esta
+        guardando el archivo en la carpeta temporal porque hay confictos de 
+        permisos, NO TOMA DATOS DE LA GPU
+       ------------------------------------------------- */
 	
+        
         HashMap<String, String> argumentos = new HashMap<>();
         //A cada string parámetro lo divido en el igual y uso el miembro de la 
         //izquierda como clave y al de la derecha como valor en el hashmap

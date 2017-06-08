@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iNetworking
+public interface iNetworking extends JsonSerializable
 {
     
     public iNIC[] getNics();

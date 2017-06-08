@@ -9,7 +9,7 @@ package monitor;
  *
  * @author Leo J. Vazquez
  */
-public interface iMemoria
+public interface iMemoria extends JsonSerializable
 {
     Integer getMemFisicaTotal();
     Integer getMemSwapTotal();

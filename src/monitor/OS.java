@@ -43,5 +43,12 @@ public abstract class OS implements iOS{
     public String getFabricanteOS() {
         return sys.getManufacturer();
     }
+
+    @Override
+    public String ToJson() {
+       
+    return String.format("{\"Familia\":%s,\"Versio\":%s,\"Fabricante\":%s}",this.getFamiliaOS(),this.getVersionOS(),this.getFabricanteOS());
+    
+    }
     
 }
