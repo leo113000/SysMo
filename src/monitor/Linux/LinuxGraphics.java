@@ -6,7 +6,6 @@
 package monitor.Linux;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -85,11 +84,11 @@ public class LinuxGraphics extends AbstractGraphics
 	ArrayList<String> datos = obtainAllGPUData();//Para que se recolecte toda la información
 	
 	//Y se construyen el resto de objetos
-	callConstructData(datos);
+	this.callConstructData(datos);
     }
 
     @Override
-    protected void constructData(ArrayList<String> datos)
+    protected final void constructData(ArrayList<String> datos)
     {
 	ArrayList<String> fields = createFields(); //Creo los campos para comparar y extraer
 
