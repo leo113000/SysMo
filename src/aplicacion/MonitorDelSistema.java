@@ -51,6 +51,7 @@ public class MonitorDelSistema {
         // Este moniTor lo use para testear la creacion del archivo JSon, esta
         guardando el archivo en la carpeta temporal porque hay confictos de 
         permisos, NO TOMA DATOS DE LA GPU
+        **SOLUCIONADO**
        ------------------------------------------------- */
 	
         
@@ -81,9 +82,20 @@ public class MonitorDelSistema {
             case LINUX:
                 System.out.println("Usted tiene Linux instalado");
                 break;
+            case WINDOWS:
+                System.out.println("Usted tiene Windows instalado");
+                break;
             default:
                 throw new Exception("Su sistema operativo aún no está soportado");
         }
+      
+        
+       
+        //     ---Testeando salida de valores---
+        
+        /*Monitor testing=new MonitorLinux();
+        System.out.println(testing.getMemMonitor().getMemFisicaTotal()+"Gb");
+        System.out.println("memoria enn uso"+testing.getMemMonitor().getMemFisicaUso());
         
         /*
         Aquí, si se provee el parámetro gui muestro la interfaz de usuario
