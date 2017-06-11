@@ -54,9 +54,8 @@ public abstract class Sensores implements iSensores
 
     @Override
     public String ToJson() {
-    
         
-    return null;
+    return null; //Json Stringer....
     }
 
 }
