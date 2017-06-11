@@ -25,7 +25,7 @@ public class Home extends javax.swing.JFrame {
         this();
         this.monitor = monitor;
         
-        //lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU()? "64 bit":"32 bit" );
+       // lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU()? "64 bit":"32 bit" ;
         lblCpuMarca.setText(monitor.getCpuMonitor().getFabricanteCPU());
         lblCpuModelo.setText(monitor.getCpuMonitor().getModeloCPU());
         lblCpuNucleosFisicos.setText(monitor.getCpuMonitor().getNucleosFisicosCPU().toString());
@@ -43,7 +43,7 @@ public class Home extends javax.swing.JFrame {
         lblTempCpu.setText(monitor.getSensMonitor().getTempCPU().toString() + "°C");
         DecimalFormat df = new DecimalFormat("0.00");
         lblUsoCpu.setText(df.format(100*monitor.getCpuMonitor().getUsoActualCPU()) + "%");
-        lblUsoRam.setText(String.valueOf(monitor.getMemMonitor().getMemFisicaUso()/1024/1024)+"mb");
+        lblUsoRam.setText(String.valueOf(monitor.getMemMonitor().getMemFisicaUso())+"mb");
         
     }
     
@@ -57,8 +57,7 @@ public class Home extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -258,7 +257,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel8.setText("Frecuencia de actualización:");
 
-        sliderFrecuencia.setMaximum(250);
+        sliderFrecuencia.setMaximum(1000);
         sliderFrecuencia.setMinimum(10);
         sliderFrecuencia.setPaintLabels(true);
         sliderFrecuencia.setSnapToTicks(true);

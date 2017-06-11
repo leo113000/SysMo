@@ -69,7 +69,18 @@ public abstract class GPU implements iGPU
     @Override
     public String ToJson()
     {
-	throw new UnsupportedOperationException("falta jasonear man");
+        String Sm=this.getSharedMemory();
+        String Md=this.getModel();
+        String Mf=this.getManufacturer();
+        String Hw=this.getHardwareID();
+        String Dv=this.getDriverID();
+        String Dp=this.getDisplayMemory();
+        String Dx=this.getDirectX();
+        String Dm=this.getDedicatedMemory();
+        
+        String dev=String.format("{\"Memoria Compartida: \":%s,\"Modelo: \":%s,\"Fabricante\":%s,\"Hard iD: \",%s;\"Driver iD:\":%s,\"Display Mem: \":%s,\"Direct X: \":%s,\"Memoria Dedicada :\":%s}",Sm,Md,Mf,Hw,Dv,Dp,Dx,Dm);
+        
+	return dev;
     }
    
     
