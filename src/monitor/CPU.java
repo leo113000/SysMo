@@ -20,12 +20,15 @@ public abstract class CPU implements iCPU
     }   
     
     @Override
-    public String getFamiliaCPU() {
-        return cpu.getFamily();
+    public String getFamiliaCPU() {  // Un poco mas "decoroso el string"
+        
+        String fam=cpu.getFamily()+"th generation";
+        
+        return fam;
     }
 
     @Override
-    public String getModeloCPU() {
+    public String getModeloCPU() {  //pendiente de resolucion, por ahora queda en numero
         return cpu.getModel();
     }
 
@@ -47,8 +50,8 @@ public abstract class CPU implements iCPU
     @Override
     public Double getUsoActualCPU() {
         
-	Double rta=cpu.getSystemCpuLoad()*100; //El valor del uso con doble presición
-	return Math.rint(rta*100)/100; //esto lo que hace es dejarlo con dos decimales
+	Double rta=cpu.getSystemCpuLoad(); //El valor del uso con doble presición
+	return Math.rint(rta*100); //esto lo que hace es dejarlo con dos decimales
     }
     
     @Override
@@ -65,10 +68,14 @@ public abstract class CPU implements iCPU
         
         int Nf=this.getNucleosFisicosCPU();
         int Nl =this.getNucleosLogicosCPU();
+        double uso=this.getUsoActualCPU();
+        String arq=this.getArquitecturaCPU();
+        String fab=this.getFabricanteCPU();
+        String fam=this.getFamiliaCPU();
         
-         return String.format("{\"Nucleos Fisicos:\":%d,\"Nucleos Logicos :\":%d}",Nf,Nl);
+         return String.format("{\"Nucleos Fisicos:\":%d,\"Nucleos Logicos :\":%d,\"Uso:\":,%.2f,\"Arquitectura:\":%s,\"Fabricante:\":%s,\"Familia:\":%s}",Nf,Nl,uso,arq,fab,fam);
     
-        
+        //se agregaron datos que faltaban, uso, fabricante y familia.
     
     }
     

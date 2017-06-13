@@ -31,8 +31,19 @@ public abstract class Monitor implements JsonSerializable
 	this.motherMonitor = motherMonitor;
 	this.osMonitor = osMonitor;
 	this.networkingMonitor = nicMonitor;
-	this.sensMonitor = sensMonitor;
-	serializables = new ArrayList();
+	//chequeen este try.choto pero para que no pase nada raro
+        try{
+            this.sensMonitor = sensMonitor;
+        }
+        catch(Exception e){
+            this.sensMonitor=null;
+            System.out.println("---ERROR SENSORS");
+             throw e;
+        
+    }
+        //aca corta :)
+	
+        serializables = new ArrayList();
 
     }
 
@@ -81,13 +92,13 @@ public abstract class Monitor implements JsonSerializable
 	this.serializables.add(this.networkingMonitor);
 	this.serializables.add(this.osMonitor);
 	this.serializables.add(this.sensMonitor);
+        
+    for(JsonSerializable js:serializables){
+        
+        System.out.println(js.ToJson());
+    }
 
-	for (JsonSerializable js : serializables)
-	{
-
-	    System.out.println(js.ToJson());
-
-	}
+	
 
     }
 
@@ -95,7 +106,7 @@ public abstract class Monitor implements JsonSerializable
     public String ToJson()
     {
 
-	return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s}", this.cpuMonitor.ToJson(), this.memMonitor.ToJson(), this.motherMonitor.ToJson(), this.networkingMonitor.ToJson(), this.osMonitor.ToJson(), this.sensMonitor.ToJson());
+	return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s,\"Gpu\".%s}", this.cpuMonitor.ToJson(), this.memMonitor.ToJson(), this.motherMonitor.ToJson(), this.networkingMonitor.ToJson(), this.osMonitor.ToJson(), this.sensMonitor.ToJson(),this.getGpuMonitor().ToJson());
 
     }
 

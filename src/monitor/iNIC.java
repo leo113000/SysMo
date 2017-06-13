@@ -14,4 +14,6 @@ public interface iNIC extends JsonSerializable
     String getIPv4();
     String getMACAdress();
     String getNombre();
+    long getBytesSend();
+    long getBytesRecv();
 }

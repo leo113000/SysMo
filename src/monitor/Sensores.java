@@ -55,8 +55,13 @@ public abstract class Sensores implements iSensores
     @Override
     public String ToJson() {
     
+        double temp=this.getTempCPU();
+        double volt=this.getVoltajeCPU();
         
-    return null;
+      
+        
+    return String.format("{\"Temp Cpu:\":%.2f, \"Voltaje: \":%.2f}",temp,volt);
+   //Ver el tema de la devolucion de los ventiladores.
     }
 
 }

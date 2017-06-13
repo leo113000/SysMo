@@ -51,11 +51,14 @@ public abstract class Networking implements iNetworking
     public String ToJson()
     {
 	String g="";
+        int i=0;
         
         for(iNIC nn:this.getNics()){
             
             
-            g+=nn.ToJson();
+            g+="Nic:"+i+nn.ToJson();
+            
+            //asignacion de indentificador para cada NIC.
             
         }
          

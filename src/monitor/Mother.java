@@ -5,6 +5,7 @@
  */
 package monitor;
 
+
 import oshi.hardware.Baseboard;
 import oshi.hardware.ComputerSystem;
 import oshi.hardware.common.AbstractBaseboard;
@@ -41,6 +42,9 @@ public abstract class Mother implements iMother
     public String getModeloMother()
     {
 	return mother.getModel() + " - " + mother.getVersion(); //Esto quizás se pueda modularizar
+       
+     // en mis dos pc solo muestra el modelo del mother, 6 7 caracteres no mas.
+     //si no puedo hacer un metodo aparte que sea getVersion,lo charlamos.
     }
 
     @Override
@@ -49,5 +53,7 @@ public abstract class Mother implements iMother
        return String.format("{\"Marca\":%s,\"Modelo\":%s}",this.getMarcaMother(),this.getModeloMother());
     
     }
+    
+    
 
 }
