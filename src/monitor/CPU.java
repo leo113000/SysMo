@@ -51,7 +51,7 @@ public abstract class CPU implements iCPU
     public Double getUsoActualCPU() {
         
 	Double rta=cpu.getSystemCpuLoad(); //El valor del uso con doble presición
-	return rta; //"lo comente porque devolvia el numero con todos los decimales"Math.rint(rta*100)/100; //esto lo que hace es dejarlo con dos decimales
+	return Math.rint(rta*100); //esto lo que hace es dejarlo con dos decimales
     }
     
     @Override

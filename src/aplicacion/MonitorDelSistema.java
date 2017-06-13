@@ -6,12 +6,13 @@ import javax.swing.JFrame;
 import monitor.Linux.LinuxNetworking;
 import monitor.Linux.MonitorLinux;
 import monitor.Monitor;
+import monitor.NIC;
 import monitor.iNIC;
 import monitor.iNetworking;
 import oshi.SystemInfo;
 import persistencia.ArchivoJSON;
 import ui.Home;
-
+import oshi.PlatformEnum;
 /**
  *
  * @author edwin
@@ -66,7 +67,7 @@ public class MonitorDelSistema {
 	
 	///////////////////////BY LEO///////////////////////////////
 	
-	argumentos.put("gui", "true");
+	//argumentos.put("gui", "false");
 	
 	///////////////////////BY LEO///////////////////////////////
 	
@@ -75,6 +76,10 @@ public class MonitorDelSistema {
         Aquí determino haciendo uso de un enum provisto en OSHI
         el sistema operativo actual
         */
+        
+        
+        
+        
         Home ventanaHome = null;
         // Entro en un switch con el resultado de getCurrentPlatformEnum()
         switch (SystemInfo.getCurrentPlatformEnum()) {
@@ -91,15 +96,88 @@ public class MonitorDelSistema {
       
         
        
-        //     ---Testeando salida de valores---
+         
+              //     ---Testeando salida de valores---
         
-        /*Monitor testing=new MonitorLinux();
-        System.out.println(testing.getMemMonitor().getMemFisicaTotal()+"Gb");
-        System.out.println("memoria enn uso"+testing.getMemMonitor().getMemFisicaUso());
+        Monitor testing=new MonitorLinux();
+        System.out.println("-------SysMo--------");
+        System.out.println("");
+        System.out.println("Monitoring System Hardware");
+        System.out.println(" ");
+        System.out.println("Sistema Operativo: "+testing.getOsMonitor().getFabricanteOS()+"  "+testing.getOsMonitor().getFamiliaOS());
+        System.out.println("Version: "+testing.getOsMonitor().getVersionOS());
+        
+        System.out.println("");
+        System.out.println("CPU: "+testing.getCpuMonitor().getFabricanteCPU());
+        System.out.println("Nucleos Fisicos: "+testing.getCpuMonitor().getNucleosFisicosCPU());
+        System.out.println("Nucleso Logicos: "+testing.getCpuMonitor().getNucleosLogicosCPU());
+        System.out.println("Arquitectura: "+testing.getCpuMonitor().getArquitecturaCPU());
+       // System.out.println("Uso Actual: "+testing.getCpuMonitor().getUsoActualCPU()+"%");
+        System.out.println(" ");
+        System.out.println("Memoria");
+        System.out.println("Total: "+testing.getMemMonitor().getMemFisicaTotal()+"Mb");
+        System.out.println("Memoria en uso: "+testing.getMemMonitor().getMemFisicaUso()+"Mb");
+        System.out.println("Memoria Swap total: "+testing.getMemMonitor().getMemSwapTotal());
+        System.out.println(" ");
+        System.out.println("Motherboard");
+        System.out.println("Marca: "+testing.getMotherMonitor().getMarcaMother());
+        System.out.println("Modelo :"+testing.getMotherMonitor().getModeloMother());
+        System.out.println(" ");
+        System.out.println("Network");
+        iNIC [] aux=testing.getNetworkingMonitor().getNics();
+        for(iNIC sh:aux){
+        System.out.println("Nombre: "+sh.getNombre());
+        System.out.println("Ip: "+sh.getIPv4());
+        System.out.println("Mac: "+sh.getMACAdress());
+        System.out.println("Bytes Send: "+sh.getBytesSend()+"b");
+        System.out.println("Bytes Recive: "+sh.getBytesRecv()+"b");    
+        System.out.println("");
+        
+      }
+        System.out.println("GPU");
+        System.out.println(" ");
+        System.out.println("Marca: "+testing.getGpuMonitor().getManufacturer());
+        System.out.println("Modelo: "+testing.getGpuMonitor().getModel());
+        if(testing.getGpuMonitor().getDedicatedMemory()!=""){
+        System.out.println("Memoria: "+testing.getGpuMonitor().getSharedMemory()+"Gb");
+        
+        
+           //aca van los parametros a mostrar de la gpu, nose cuales van y cuales no.
+        }
+        //falta setear argumento
+        String test="false";
+        
+        System.out.println("\t\t\t ----Real Time Data---- \n\n\n");
+        while(test=="false"){
+            
+            System.out.println("Uso Actual: "+testing.getCpuMonitor().getUsoActualCPU()+"%");
+            System.out.println("Temp CPU: "+testing.getSensMonitor().getTempCPU());
+            System.out.println("Memoria en uso: "+testing.getMemMonitor().getMemFisicaUso()+"Mb");
+            
+            for(iNIC sh:aux){ 
+            System.out.println("Bytes Send: "+sh.getBytesSend()+"b");
+            System.out.println("Bytes Recive: "+sh.getBytesRecv()+"b"); 
+            System.out.println(" ");
+            Thread.sleep(700);
+                System.out.println("\r");
+                
+            
+            
+            }
+        }
+        
+        
+        
+        
+        
+        
+    
         
         /*
         Aquí, si se provee el parámetro gui muestro la interfaz de usuario
         */
+        
+        /*
         if(argumentos.get("gui").equals("true")){
             ventanaHome = construirHome(new MonitorLinux());
             ventanaHome.setVisible(true);
@@ -109,7 +187,8 @@ public class MonitorDelSistema {
                 en función de la frecuencia de actualización establecida por el 
                 jslider.
                 */
-                ventanaHome.actualizarDatosSensorYCarga();
+        /*
+        ventanaHome.actualizarDatosSensorYCarga();
                 
                 // Esta es la manera de poner el hilo actual en pausa
                 // por el tiempo que se necesite en milisegundos
@@ -124,10 +203,14 @@ public class MonitorDelSistema {
      * @param monitor
      * @return 
      */
+
+    /***
     private static Home construirHome(Monitor monitor) {
         Home home = new Home(monitor);
         home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         home.setSize(800, 600);
         return home;
+    **/
+
     }
 }
