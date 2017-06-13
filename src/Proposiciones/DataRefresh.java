@@ -11,5 +11,14 @@ package Proposiciones;
  */
 public class DataRefresh
 {
-    
+    public static void refrescarDatosCada(long time) throws InterruptedException
+    {
+	while(true)
+	{
+	    //Se actualizan los datos
+	    Thread.sleep(time);
+	}
+	
+	
+    }
 }
