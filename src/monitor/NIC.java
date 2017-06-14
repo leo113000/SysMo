@@ -41,6 +41,7 @@ public class NIC implements iNIC
     public String getMACAdress()
     {
 	return nic.getMacaddr();
+
     }
 
     @Override
@@ -53,8 +54,31 @@ public class NIC implements iNIC
     public String ToJson()
     {
 
-	return String.format("{\"Ipv4\":%s,\"Mac Adress\":%s,\"Nombre\":%s}", this.getIPv4(), this.getMACAdress(), this.getNombre());
+	return String.format("{\"Ipv4\":%s,\"Mac Adress\":%s,\"Nombre\":%s,\"Bytes Send: \":%f,\"Bytes Recive: \":%f}", this.getIPv4(), this.getMACAdress(), this.getNombre(), this.getBytesSend(), this.getBytesRecv());
 
+    }
+
+    @Override
+    public long getBytesSend()
+    {
+
+	return nic.getBytesSent();
+    }
+
+    @Override
+    public long getBytesRecv()
+    {
+
+	return nic.getBytesRecv();
+
+    }
+
+    @Override
+    public String toString()
+    {
+	return "Nombre: " + getNombre() + "\n"
+		+ "IPv4: " + getIPv4() + "\n"
+		+ "MAC: " + getMACAdress();
     }
 
 }

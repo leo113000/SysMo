@@ -15,7 +15,6 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import monitor.AbstractGraphics;
 
 /**
@@ -153,7 +152,7 @@ class WindowsGraphics extends AbstractGraphics
     private ArrayList<String> obtainAllGPUData()
     {
 	ArrayList<String> datos = new ArrayList<>();
-
+	
 	String textFile = "./yourTextFile.txt"; //El path del archivo
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dxdiag","/whql:off","/t", textFile);
 	Process p;
