@@ -82,9 +82,17 @@ public abstract class GPU implements iGPU
         
 	return dev;
     }
+
+    @Override
+    public String toString()
+    {
+	
+	return "Marca: " + getManufacturer() + "\n"
+		+ "Modelo: " + getModel();
+    }
+
+
    
     
-    
-   
-    
+       
 }

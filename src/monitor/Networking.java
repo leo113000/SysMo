@@ -64,7 +64,25 @@ public abstract class Networking implements iNetworking
          
         return g;
     }
-    
-    
 
+    @Override
+    public String toString()
+    {
+	String g="";
+        int i=0;
+        
+        for(iNIC nn:this.getNics()){
+            
+            
+            g+="NIC "+(i+1)+":" + "\n" + nn.toString()+"\n\n";
+            
+            //asignacion de indentificador para cada NIC.
+            
+        }
+	
+	return g;
+    }
+
+    
+    
 }
