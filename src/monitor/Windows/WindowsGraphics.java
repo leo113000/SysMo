@@ -23,19 +23,19 @@ import monitor.AbstractGraphics;
  */
 class WindowsGraphics extends AbstractGraphics
 {
+    
     private final String MANUFACTURER = "Manufacturer";
     private final String MODEL = "Card name";
 
     private final String VENDORID = "Vendor ID";
     private final String DEVICEID = "Device ID";
-    
+
     private final String DISPLAYMEMORY = "Display Memory";
     private final String DEDICATEDMEMORY = "Dedicated Memory";
     private final String SHAREDMEMORY = "Shared Memory";
-    
-    
+
     private String directX;
-    
+
     @Override
     public String getManufacturer()
     {
@@ -75,10 +75,10 @@ class WindowsGraphics extends AbstractGraphics
     @Override
     public String getHardwareID()
     {
-	String v=atributos.get(VENDORID);
-	String d=atributos.get(DEVICEID);
-	
-	return  "".equals(v) || "".equals(d) ? "" : v + ":" + d;
+	String v = atributos.get(VENDORID);
+	String d = atributos.get(DEVICEID);
+
+	return "".equals(v) || "".equals(d) ? "" : v + ":" + d;
     }
 
     @Override
@@ -89,23 +89,23 @@ class WindowsGraphics extends AbstractGraphics
 
     public WindowsGraphics()
     {
+	
 	ArrayList<String> datos = obtainAllGPUData();//Para que se recolecte toda la información
-	
-	atributos=new HashMap<>();
-	
+
+	atributos = new HashMap<>();
+
 	//Y se construyen el resto de objetos
 	callConstructData(datos);
     }
-    
-    
+
     @Override
     protected void createEmptyObject()
     {
 	super.createEmptyObject();
-	
-	directX="";	
+
+	directX = "";
     }
-    
+
     @Override
     protected void constructData(ArrayList<String> datos)
     {
@@ -119,22 +119,22 @@ class WindowsGraphics extends AbstractGraphics
 
 		if (iString.contains(VENDORID) || iString.contains(DEVICEID)) //si la linea de los datos en la que estoy posicionado tiene el dato
 		{
-		    atributos.put(currField,cortarDespuesDe(iString,"0x"));
+		    atributos.put(currField, cortarDespuesDe(iString, "0x"));
 
 		    fields.remove(i);
-		}else if(iString.contains(currField))
+		} else if (iString.contains(currField))
 		{
-		    atributos.put(currField,cortarDespuesDe(iString,": "));
+		    atributos.put(currField, cortarDespuesDe(iString, ": "));
 
 		    fields.remove(i);
 		}
-		
+
 	    }
 	}
     }
 
     @Override
-    protected  ArrayList<String> createFields()
+    protected ArrayList<String> createFields()
     {
 	ArrayList<String> fields = new ArrayList<>();
 
@@ -152,11 +152,11 @@ class WindowsGraphics extends AbstractGraphics
     private ArrayList<String> obtainAllGPUData()
     {
 	ArrayList<String> datos = new ArrayList<>();
-	
+
 	String textFile = "./yourTextFile.txt"; //El path del archivo
-	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dxdiag","/whql:off","/t", textFile);
+	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "dxdiag", "/whql:off", "/t", textFile);
 	Process p;
-	
+
 	try
 	{
 	    p = pb.start(); //Se inicia ese proceso, va  a escribir un archivo de texto
@@ -166,7 +166,6 @@ class WindowsGraphics extends AbstractGraphics
 	    System.err.println("Error iniciando la extracción");
 	}
 
-	
 	try
 	{
 	    BufferedReader br = new BufferedReader(new FileReader(textFile));  //Se lee ese archivo de texto a un buffer
@@ -197,19 +196,47 @@ class WindowsGraphics extends AbstractGraphics
 	} catch (IOException e)
 	{
 	    System.out.println("Error inesperado con la apertura del archivo");
-	    datos=null;
+	    datos = null;
 	}
-	
-	   return datos; 
-	
-	
+
+	return datos;
+
     }
 
     private void esperarProceso(Process p)
     {
+	Runnable r = new Runnable()
+	{
+	    @Override
+	    public void run()
+	    {
+		while (true)
+		{
+		    try
+		    {
+			System.out.print("\rCargando datos");
+			Thread.sleep(500);
+			System.out.print(".");
+			Thread.sleep(500);
+			System.out.print(".");
+			Thread.sleep(500);
+			System.out.print(".");
+			Thread.sleep(500);
+		    } catch (Exception e)
+		    {
+
+		    }
+		}
+	    }
+	};
+
 	try
 	{
+	    Thread t=new Thread(r);
+	    t.start();
 	    p.waitFor(); //espera que el proceso anterior termine
+	    System.out.print("\r                       ");//Esto limpia la linea de carga
+	    t.stop(); //Esto está totalmente no recomendado
 	} catch (InterruptedException e)
 	{
 	    System.err.println("Ocurrió un error \"inesperado\" al obtener los datos de la GPU");

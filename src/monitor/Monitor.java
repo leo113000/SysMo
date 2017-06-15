@@ -117,6 +117,8 @@ public abstract class Monitor implements JsonSerializable
     public void mostrarDatos(Integer refresco)
     {
 
+	System.out.println("\n");
+	
 	System.out.println(osMonitor);
 
 	System.out.println("\n");

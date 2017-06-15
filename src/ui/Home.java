@@ -42,7 +42,7 @@ public class Home extends javax.swing.JFrame {
         
         lblTempCpu.setText(monitor.getSensMonitor().getTempCPU().toString() + "°C");
         DecimalFormat df = new DecimalFormat("0.00");
-        lblUsoCpu.setText(df.format(100*monitor.getCpuMonitor().getUsoActualCPU()) + "%");
+        lblUsoCpu.setText(df.format(monitor.getCpuMonitor().getUsoActualCPU()) + "%");
         lblUsoRam.setText(String.valueOf(monitor.getMemMonitor().getMemFisicaUso())+"mb");
         
     }

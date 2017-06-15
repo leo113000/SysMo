@@ -30,7 +30,7 @@ public class MonitorDelSistema
 	 */
 	HashMap<String, String> argumentos = new HashMap<>();
 
-	argumentos.put("gui", "true"); //Sin args, por defecto se muestran los datos por consola
+	argumentos.put("gui", "false"); //Sin args, por defecto se muestran los datos por consola
 	argumentos.put("refresh", "500"); //Por defecto los datos se refrescan c/ medio segundo
 	
 	//A cada string parámetro lo divido en el igual y uso el miembro de la 
