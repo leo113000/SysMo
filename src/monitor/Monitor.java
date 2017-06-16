@@ -178,8 +178,8 @@ public abstract class Monitor implements JsonSerializable
     {
 	ArrayList<String> s=new ArrayList<>();
 	
-	s.add(osMonitor.getFabricanteOS() + os);
-	s.add(osMonitor.getFabricanteOS());
+	s.add(osMonitor.getFabricanteOS() + " " +  osMonitor.getFamiliaOS());
+	s.add(osMonitor.getVersionOS());
 	
 	s.add(cpuMonitor.getFabricanteCPU());
 	s.add(cpuMonitor.getNucleosFisicosCPU().toString());
@@ -195,6 +195,12 @@ public abstract class Monitor implements JsonSerializable
 	s.add(motherMonitor.getMarcaMother());
 	s.add(motherMonitor.getModeloMother());
 	
+	for(iNIC inic: networkingMonitor.getNics())
+	{
+	    s.add(inic.getIPv4());
+	    s.add(inic.getNombre());
+	    s.add(inic.getMACAddress());
+	}
 	
 	return s;
     }

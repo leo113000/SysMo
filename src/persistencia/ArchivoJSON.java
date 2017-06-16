@@ -28,7 +28,7 @@ public class ArchivoJSON extends ArchivoTexto {
         this.json=Js;
     }
     
-      public void Create() throws IOException{
+      public void create() throws IOException{
          this.Write(this.json);
           
       }

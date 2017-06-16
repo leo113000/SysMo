@@ -5,7 +5,6 @@
  */
 package monitor;
 
-import java.util.ArrayList;
 import oshi.hardware.NetworkIF;
 import oshi.hardware.Networks;
 

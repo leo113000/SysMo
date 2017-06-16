@@ -12,7 +12,7 @@ package monitor;
 public interface iNIC extends JsonSerializable
 {
     String getIPv4();
-    String getMACAdress();
+    String getMACAddress();
     String getNombre();
     long getBytesSend();
     long getBytesRecv();
