@@ -5,12 +5,7 @@
  */
 package persistencia;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Date;
 
 /**
@@ -23,13 +18,20 @@ public class ArchivoJSON extends ArchivoTexto {
 
    
     
-    public ArchivoJSON(String Js) throws IOException{
+    public ArchivoJSON(String Js) throws IOException {
         super(System.getProperty("user.dir")+"MonitorDeSistema"+String.valueOf(new Date())+".json");
         this.json=Js;
     }
     
-      public void create() throws IOException{
-         this.Write(this.json);
+      public void create(){
+	 try{
+	      this.Write(this.json);
+	System.out.println("JSON CREADO CORRECTAMENTE");
+	 } catch(Exception e)
+	 {
+	     System.out.println("ERROR AL CREAR JSON");
+	 }
+        
           
       }
     /**

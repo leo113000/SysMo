@@ -38,7 +38,7 @@ public class ArchivoCSV extends ArchivoTexto
     public ArchivoCSV(ArrayList<String> csv) throws IOException
     {
 	super(System.getProperty("user.dir") + "MonitorDeSistema" + String.valueOf(new Date()) + ".csv");
-	System.out.println(System.getProperty("user.dir") + "MonitorDeSistema" + String.valueOf(new Date()) + ".csv");
+
 	this.csv = csv;
     }
 
@@ -53,8 +53,6 @@ public class ArchivoCSV extends ArchivoTexto
 		    = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
 
 	    csvFilePrinter = new CSVPrinter(file, csvFileFormat);
-
-	    System.out.println(csv);
 
 	    csvFilePrinter.printRecord(FILE_HEADER);
 

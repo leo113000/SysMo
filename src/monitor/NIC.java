@@ -54,7 +54,7 @@ public class NIC implements iNIC
     public String ToJson()
     {
 
-	return String.format("{\"Ipv4\":%s,\"Mac Adress\":%s,\"Nombre\":%s,\"Bytes Send: \":%f,\"Bytes Recive: \":%f}", this.getIPv4(), this.getMACAddress(), this.getNombre(), this.getBytesSend(), this.getBytesRecv());
+	return String.format("{\"Ipv4\":%s,\"Mac Adress\":%s,\"Nombre\":%s", this.getIPv4(), this.getMACAddress(), this.getNombre());
 
     }
 

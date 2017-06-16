@@ -3,18 +3,16 @@ package aplicacion;
 import Proposiciones.AlertaSwap;
 import Proposiciones.DataRefresh;
 import Proposiciones.VerificadorJSON;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.xml.bind.annotation.XmlElement;
 import monitor.Linux.MonitorLinux;
 import monitor.Monitor;
 import monitor.Windows.MonitorWindows;
 import oshi.SystemInfo;
+import persistencia.ArchivoCSV;
+import persistencia.ArchivoJSON;
 import ui.Home;
 
 /**
@@ -36,9 +34,11 @@ public class MonitorDelSistema
 	 */
 	HashMap<String, String> argumentos = new HashMap<>();
 
-	argumentos.put("gui", "true"); //Sin args, por defecto se muestran los datos por consola
+	argumentos.put("gui", "false"); //Sin args, por defecto se muestran los datos por consola
 	argumentos.put("refresh", "500"); //Por defecto los datos se refrescan c/ medio segundo
 	argumentos.put("demo", "false");
+	argumentos.put("CSV","false");
+	argumentos.put("JSON", "false");
 
 	//A cada string parámetro lo divido en el igual y uso el miembro de la 
 	//izquierda como clave y al de la derecha como valor en el hashmap	
@@ -47,14 +47,28 @@ public class MonitorDelSistema
 	    String[] partesArgumento = a.split("="); //Divido el string en el '='
 	    argumentos.put(partesArgumento[0], partesArgumento[1]); //Pongo clave y valor en el map
 	}
-
+	
+	
 	if (argumentos.get("demo").equals("true"))
 	{
 	    demo();
 	}
 
 	Monitor master = crearMonitor();
-
+	
+	if(argumentos.get("CSV").equals("true"))
+	{
+	    ArchivoCSV c=new ArchivoCSV(master.toCSV());
+	    c.create();
+	}
+	
+	if(argumentos.get("JSON").equals("true"))
+	{
+	    ArchivoJSON j=new ArchivoJSON(master.ToJson());
+	    j.create();
+	}
+	
+	
 	/*
 	Aquí, si se provee el parámetro gui muestro la interfaz de usuario
 	 */
