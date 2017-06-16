@@ -119,7 +119,6 @@ public abstract class Monitor implements JsonSerializable
     {
 
 	System.out.println("\n");
-	
 	System.out.println(osMonitor);
 
 	System.out.println("\n");

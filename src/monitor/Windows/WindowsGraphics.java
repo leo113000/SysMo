@@ -9,9 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -214,6 +212,7 @@ class WindowsGraphics extends AbstractGraphics
 		{
 		    try
 		    {
+			System.out.print("\r                                     "); //línea que limpia la línea (cuak!)
 			System.out.print("\rCargando datos");
 			Thread.sleep(500);
 			System.out.print(".");
@@ -239,7 +238,7 @@ class WindowsGraphics extends AbstractGraphics
 	    t.stop(); //Esto está totalmente no recomendado
 	} catch (InterruptedException e)
 	{
-	    System.err.println("Ocurrió un error \"inesperado\" al obtener los datos de la GPU");
+	    System.err.println("Ocurrió un \"error inesperado\" al obtener los datos de la GPU");
 	}
     }
 
@@ -248,15 +247,9 @@ class WindowsGraphics extends AbstractGraphics
 	try
 	{
 	    Files.delete(path);
-	} catch (NoSuchFileException x)
+	} catch (Exception e)
 	{
-	    System.err.format("%s: no such" + " file or directory%n", path);
-	} catch (DirectoryNotEmptyException x)
-	{
-	    System.err.format("%s not empty%n", path);
-	} catch (IOException x)
-	{
-	    System.err.println(x);
+	    System.out.println("Error al eliminar el archivo");
 	}
     }
 

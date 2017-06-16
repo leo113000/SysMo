@@ -3,9 +3,12 @@ package aplicacion;
 import Proposiciones.AlertaSwap;
 import Proposiciones.DataRefresh;
 import Proposiciones.VerificadorJSON;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.xml.bind.annotation.XmlElement;
 import monitor.Linux.MonitorLinux;
@@ -30,12 +33,12 @@ public class MonitorDelSistema
     {
 	/*
 	Aquí preparo un hashmap con los argumentos de entrada de la aplicación
-	*/
+	 */
 	HashMap<String, String> argumentos = new HashMap<>();
 
-	argumentos.put("gui", "false"); //Sin args, por defecto se muestran los datos por consola
+	argumentos.put("gui", "true"); //Sin args, por defecto se muestran los datos por consola
 	argumentos.put("refresh", "500"); //Por defecto los datos se refrescan c/ medio segundo
-	argumentos.put("demo", "true");
+	argumentos.put("demo", "false");
 
 	//A cada string parámetro lo divido en el igual y uso el miembro de la 
 	//izquierda como clave y al de la derecha como valor en el hashmap	
@@ -54,7 +57,7 @@ public class MonitorDelSistema
 
 	/*
 	Aquí, si se provee el parámetro gui muestro la interfaz de usuario
-	*/
+	 */
 	Home ventanaHome = null;
 
 	if (argumentos.get("gui").equals("true"))
@@ -67,7 +70,7 @@ public class MonitorDelSistema
 		Aquí se muestra una ventana de ejemplo. Se actualizan los datos 
 		 en función de la frecuencia de actualización establecida por el 
 		jslider.
-	    	 */
+		 */
 
 		ventanaHome.actualizarDatosSensorYCarga();
 
@@ -91,9 +94,9 @@ public class MonitorDelSistema
     private static Home construirHome(Monitor monitor)
     {
 	Home home = new Home(monitor);
-
+	home.setTitle("SysMo");
 	home.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	home.setSize(800, 600);
+	home.setSize(900, 500);
 	return home;
 
     }
@@ -141,7 +144,6 @@ public class MonitorDelSistema
 	    System.out.println("Presione una opción para probar otra demo");
 	    System.out.println("Cualquier otra tecla para SysMo");
 	    sel = s.nextInt();
-
 
 	}
     }

@@ -6,6 +6,7 @@
 package ui;
 
 import java.text.DecimalFormat;
+import javax.swing.ImageIcon;
 import monitor.Monitor;
 
 /**
@@ -25,7 +26,7 @@ public class Home extends javax.swing.JFrame {
         this();
         this.monitor = monitor;
         
-       // lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU()? "64 bit":"32 bit" ;
+	lblCpuArquitectura.setText(monitor.getCpuMonitor().getArquitecturaCPU());
         lblCpuMarca.setText(monitor.getCpuMonitor().getFabricanteCPU());
         lblCpuModelo.setText(monitor.getCpuMonitor().getModeloCPU());
         lblCpuNucleosFisicos.setText(monitor.getCpuMonitor().getNucleosFisicosCPU().toString());
@@ -36,6 +37,10 @@ public class Home extends javax.swing.JFrame {
         lblOsVersion.setText(monitor.getOsMonitor().getVersionOS());
         lblRamTotal.setText(monitor.getMemMonitor().getMemFisicaTotal().toString());
         
+	ipv4.setText(monitor.getNetworkingMonitor().getNics()[0].getIPv4());
+	redname.setText(monitor.getNetworkingMonitor().getNics()[0].getNombre());
+	macaddress.setText(monitor.getNetworkingMonitor().getNics()[0].getMACAddress());
+	
     }
     
     public void actualizarDatosSensorYCarga(){
@@ -57,7 +62,8 @@ public class Home extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -95,6 +101,12 @@ public class Home extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         sliderFrecuencia = new javax.swing.JSlider();
         jLabel9 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        ipv4 = new javax.swing.JLabel();
+        redname = new javax.swing.JLabel();
+        macaddress = new javax.swing.JLabel();
 
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -230,7 +242,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(lblMotherModelo))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getSize()+5f));
@@ -266,6 +278,18 @@ public class Home extends javax.swing.JFrame {
         jLabel9.setFont(jLabel9.getFont().deriveFont(jLabel9.getFont().getSize()+5f));
         jLabel9.setText("Datos en tiempo real");
 
+        jLabel20.setText("IPv4:");
+
+        jLabel21.setText("Name:");
+
+        jLabel22.setText("MAC Address:");
+
+        ipv4.setText("n/a");
+
+        redname.setText("n/a");
+
+        macaddress.setText("n/a");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -294,7 +318,21 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel9)))
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21))
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(redname)
+                            .addComponent(ipv4)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(macaddress)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -320,6 +358,18 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(sliderFrecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(ipv4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(redname))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(macaddress))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -348,6 +398,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ipv4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -360,6 +411,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -383,6 +437,8 @@ public class Home extends javax.swing.JFrame {
     protected javax.swing.JLabel lblTempCpu;
     protected javax.swing.JLabel lblUsoCpu;
     protected javax.swing.JLabel lblUsoRam;
+    private javax.swing.JLabel macaddress;
+    private javax.swing.JLabel redname;
     protected javax.swing.JSlider sliderFrecuencia;
     // End of variables declaration//GEN-END:variables
 }
