@@ -22,6 +22,7 @@ public class VerificadorJSON
 	{
 	    JSONObject j = new JSONObject(texto);
 	    j.toMap();
+	    System.out.println("JSON CORRECTO");
 	} catch (Exception e)
 	{
 	    System.out.println("Error en el JSON");
@@ -30,5 +31,8 @@ public class VerificadorJSON
 
 	return rta;
     }
-
+    public static void main(String[] args)
+    {
+	
+    }
 }

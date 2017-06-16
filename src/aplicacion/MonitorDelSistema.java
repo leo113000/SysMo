@@ -1,8 +1,13 @@
 package aplicacion;
 
+import Proposiciones.AlertaSwap;
+import Proposiciones.DataRefresh;
+import Proposiciones.VerificadorJSON;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.xml.bind.annotation.XmlElement;
 import monitor.Linux.MonitorLinux;
 import monitor.Monitor;
 import monitor.Windows.MonitorWindows;
@@ -30,15 +35,65 @@ public class MonitorDelSistema
 	 */
 	HashMap<String, String> argumentos = new HashMap<>();
 
-	argumentos.put("gui", "false"); //Sin args, por defecto se muestran los datos por consola
+	argumentos.put("gui", "true"); //Sin args, por defecto se muestran los datos por consola
 	argumentos.put("refresh", "500"); //Por defecto los datos se refrescan c/ medio segundo
-	
+	argumentos.put("demo", "true");
+
 	//A cada string parámetro lo divido en el igual y uso el miembro de la 
 	//izquierda como clave y al de la derecha como valor en el hashmap	
 	for (String a : args)
 	{
 	    String[] partesArgumento = a.split("="); //Divido el string en el '='
 	    argumentos.put(partesArgumento[0], partesArgumento[1]); //Pongo clave y valor en el map
+	}
+
+	int sel;
+	Scanner s = new Scanner(System.in);
+
+	imprimirMenuDemos();
+
+	sel = s.nextInt();
+
+	while (argumentos.get("demo").equals("true"))
+	{
+
+	    switch (sel)
+	    {
+		case 1:
+		    AlertaSwap.Alerta();
+		    break;
+		case 2:
+		    System.out.println("Ingrese tiempo de refresco");
+		    int d=s.nextInt();
+		    DataRefresh.refrescarDatosCada(d);
+		    break;
+		case 3:
+		    System.out.println("Ingrese String");
+		   // String x = new Scanner(System.in).nextLine();
+		    String x = s.next();
+		    VerificadorJSON.validaJSON(String.valueOf(x));
+		    break;
+
+	    }
+	    if (sel > 3 || sel < 0)
+	    {
+		argumentos.put("demo", "false");
+	    } else
+	    {
+		System.out.println("\n\n");
+
+		imprimirMenuDemos();
+
+		System.out.println("Presione una opción para probar otra demo");
+		System.out.println("Cualquier otra tecla para SysMo");
+		sel = s.nextInt();
+
+		if (sel > 3)
+		{
+		    argumentos.put("demo", "false");
+		}
+	    }
+
 	}
 
 	Monitor master = crearMonitor();
@@ -110,5 +165,13 @@ public class MonitorDelSistema
 	}
 
 	return moni;
+    }
+
+    private static void imprimirMenuDemos()
+    {
+	System.out.println("MENU DEMOS");
+	System.out.println("1. Alerta Swap");
+	System.out.println("2. Refresco de datos");
+	System.out.println("3. Verificador JSON");
     }
 }

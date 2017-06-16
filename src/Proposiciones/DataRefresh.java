@@ -11,14 +11,21 @@ package Proposiciones;
  */
 public class DataRefresh
 {
+
     public static void refrescarDatosCada(long time) throws InterruptedException
     {
-	while(true)
+	int i=0;
+	
+	while (true && i<12)//el i es para que este bucle termine a fines practicos de seguir mostrando el programa
 	{
-	    //Se actualizan los datos
+	    
+	    System.out.print("\rEl dato es: " + Math.floor(Math.random() * 100));
 	    Thread.sleep(time);
+	    
+	    i++;
 	}
 	
-	
     }
+    
+    
 }
