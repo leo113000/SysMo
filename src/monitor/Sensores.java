@@ -5,6 +5,7 @@
  */
 package monitor;
 
+import java.util.ArrayList;
 import oshi.hardware.Sensors;
 
 /**
@@ -38,31 +39,28 @@ public abstract class Sensores implements iSensores
     {
 	/*
 	 int[ ] cannot be converted to Integer[ ]   
-	*/
+	 */
 	int[] aux = sensor.getFanSpeeds();
-	Integer[] rta = new Integer[aux.length]; 
-	
-	int i=0;
-	
-	for(int enterito : aux) //a cada entero que nos devuelve la librería
+	Integer[] rta = new Integer[aux.length];
+
+	int i = 0;
+
+	for (int enterito : aux) //a cada entero que nos devuelve la librería
 	{
-	    rta[i]=enterito; //se lo asigna a un espacio de un array de Integer
+	    rta[i] = enterito; //se lo asigna a un espacio de un array de Integer
 	}
-	
+
 	return rta;
     }
 
     @Override
-    public String ToJson() {
+    public String ToJson()
+    {
 
-    
-        double temp=this.getTempCPU();
-        double volt=this.getVoltajeCPU();
-        
-      
-        
-    return String.format("{\"Temp Cpu:\":%.2f, \"Voltaje: \":%.2f}",temp,volt);
-   //Ver el tema de la devolucion de los ventiladores.
+	double temp = this.getTempCPU();
+	double volt = this.getVoltajeCPU();
+
+	return String.format("{\"Temp Cpu:\":%.2f, \"Voltaje: \":%.2f}", temp, volt);
     }
 
 }

@@ -26,13 +26,9 @@ public class VerificadorJSON
 	} catch (Exception e)
 	{
 	    System.out.println("Error en el JSON");
-	    rta=false;
+	    rta = false;
 	}
 
 	return rta;
-    }
-    public static void main(String[] args)
-    {
-	
     }
 }

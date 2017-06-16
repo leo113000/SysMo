@@ -5,6 +5,7 @@
  */
 package monitor;
 
+import java.util.ArrayList;
 import oshi.hardware.NetworkIF;
 import oshi.hardware.Networks;
 
@@ -36,8 +37,8 @@ public abstract class Networking implements iNetworking
 	    aux[i] = new NIC(iNet);//Se construye cada espacio del array
 	    i++;
 	}
-	
-	this.nics=aux;
+
+	this.nics = aux;
 
     }
 
@@ -50,36 +51,34 @@ public abstract class Networking implements iNetworking
     @Override
     public String ToJson()
     {
-	String g="";
-        int i=0;
-        
-        for(iNIC nn:this.getNics()){
-            
-            
-            g+="Nic:"+i+nn.ToJson();
-            
-            //asignacion de indentificador para cada NIC.
-            
-        }
-         
-        return g;
+	String g = "";
+	int i = 0;
+
+	for (iNIC nn : this.getNics())
+	{
+
+	    g += "Nic:" + i + nn.ToJson();
+
+	    //asignacion de indentificador para cada NIC.
+	}
+
+	return g;
     }
 
     @Override
     public String toString()
     {
-	String g="";
-        int i=0;
-        
-        for(iNIC nn:this.getNics()){
-            
-            
-            g+="NIC "+(i+1)+":" + "\n" + nn.toString()+"\n\n";
-            
-            //asignacion de indentificador para cada NIC.
-            
-        }
-	
+	String g = "";
+	int i = 0;
+
+	for (iNIC nn : this.getNics())
+	{
+
+	    g += "NIC " + (i + 1) + ":" + "\n" + nn.toString() + "\n\n";
+
+	    //asignacion de indentificador para cada NIC.
+	}
+
 	return g;
     }
 

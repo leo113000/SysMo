@@ -15,13 +15,13 @@ import javax.swing.JOptionPane;
 public class AlertaSwap
 {
 
-    public static void Alerta() throws InterruptedException 
+    private static void alertaCore() throws InterruptedException
     {
 	int i = 0;
 
 	JFrame j = new JFrame("Alerta");
 
-	while (i != 7)
+	while (i != 6)
 	{
 
 	    System.out.println("USAGE=" + i + "%");
@@ -35,6 +35,20 @@ public class AlertaSwap
 	    }
 	    Thread.sleep(1000);
 	    i++;
+	}
+
+	System.out.println("SIMULACIÓN DE ALERTA SWAP EXITOSA");
+
+    }
+
+    public static void alerta()
+    {
+	try
+	{
+	    alertaCore();
+	} catch (Exception e)
+	{
+
 	}
     }
 }

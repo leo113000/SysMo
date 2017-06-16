@@ -114,6 +114,7 @@ public abstract class Monitor implements JsonSerializable
     }
     
     
+    
     public void mostrarDatos(Integer refresco)
     {
 
@@ -173,6 +174,28 @@ public abstract class Monitor implements JsonSerializable
 	}
     }
     
-    
-    
+    public ArrayList<String> toCSV()
+    {
+	ArrayList<String> s=new ArrayList<>();
+	
+	s.add(osMonitor.getFabricanteOS() + os);
+	s.add(osMonitor.getFabricanteOS());
+	
+	s.add(cpuMonitor.getFabricanteCPU());
+	s.add(cpuMonitor.getNucleosFisicosCPU().toString());
+	s.add(cpuMonitor.getNucleosLogicosCPU().toString());
+	s.add(cpuMonitor.getArquitecturaCPU());
+	
+	s.add(gpuMonitor.getManufacturer());
+	s.add(gpuMonitor.getModel());
+	
+	s.add(memMonitor.getMemFisicaTotal() + "Mb");
+	s.add(memMonitor.getMemSwapTotal() + "Mb");
+	
+	s.add(motherMonitor.getMarcaMother());
+	s.add(motherMonitor.getModeloMother());
+	
+	
+	return s;
+    }
 }

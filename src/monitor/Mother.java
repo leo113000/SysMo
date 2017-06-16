@@ -7,7 +7,6 @@ package monitor;
 
 import oshi.hardware.Baseboard;
 import oshi.hardware.ComputerSystem;
-import oshi.hardware.common.AbstractBaseboard;
 import oshi.hardware.common.AbstractHardwareAbstractionLayer;
 
 /**

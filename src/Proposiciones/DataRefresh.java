@@ -12,7 +12,7 @@ package Proposiciones;
 public class DataRefresh
 {
 
-    public static void refrescarDatosCada(long time) throws InterruptedException
+    private static void refrescoCore (long time) throws InterruptedException
     {
 	int i=0;
 	
@@ -25,6 +25,19 @@ public class DataRefresh
 	    i++;
 	}
 	
+	System.out.println("SIMULACIÓN DE REFRESCO EXITOSA");
+	
+    }
+    
+    public static void refrescarDatosCada(long time)
+    {
+	try
+	{
+	    refrescoCore(time);
+	}catch (Exception e)
+	{
+	    
+	}
     }
     
     

@@ -28,14 +28,12 @@ public class MonitorDelSistema
      */
     public static void main(String[] args) throws InterruptedException, IOException, Exception
     {
-
-
 	/*
-        Aquí preparo un hashmap con los argumentos de entrada de la aplicación
-	 */
+	Aquí preparo un hashmap con los argumentos de entrada de la aplicación
+	*/
 	HashMap<String, String> argumentos = new HashMap<>();
 
-	argumentos.put("gui", "true"); //Sin args, por defecto se muestran los datos por consola
+	argumentos.put("gui", "false"); //Sin args, por defecto se muestran los datos por consola
 	argumentos.put("refresh", "500"); //Por defecto los datos se refrescan c/ medio segundo
 	argumentos.put("demo", "true");
 
@@ -47,61 +45,16 @@ public class MonitorDelSistema
 	    argumentos.put(partesArgumento[0], partesArgumento[1]); //Pongo clave y valor en el map
 	}
 
-	int sel;
-	Scanner s = new Scanner(System.in);
-
-	imprimirMenuDemos();
-
-	sel = s.nextInt();
-
-	while (argumentos.get("demo").equals("true"))
+	if (argumentos.get("demo").equals("true"))
 	{
-
-	    switch (sel)
-	    {
-		case 1:
-		    AlertaSwap.Alerta();
-		    break;
-		case 2:
-		    System.out.println("Ingrese tiempo de refresco");
-		    int d=s.nextInt();
-		    DataRefresh.refrescarDatosCada(d);
-		    break;
-		case 3:
-		    System.out.println("Ingrese String");
-		   // String x = new Scanner(System.in).nextLine();
-		    String x = s.next();
-		    VerificadorJSON.validaJSON(String.valueOf(x));
-		    break;
-
-	    }
-	    if (sel > 3 || sel < 0)
-	    {
-		argumentos.put("demo", "false");
-	    } else
-	    {
-		System.out.println("\n\n");
-
-		imprimirMenuDemos();
-
-		System.out.println("Presione una opción para probar otra demo");
-		System.out.println("Cualquier otra tecla para SysMo");
-		sel = s.nextInt();
-
-		if (sel > 3)
-		{
-		    argumentos.put("demo", "false");
-		}
-	    }
-
+	    demo();
 	}
 
 	Monitor master = crearMonitor();
 
-
 	/*
-        Aquí, si se provee el parámetro gui muestro la interfaz de usuario
-	 */
+	Aquí, si se provee el parámetro gui muestro la interfaz de usuario
+	*/
 	Home ventanaHome = null;
 
 	if (argumentos.get("gui").equals("true"))
@@ -111,10 +64,10 @@ public class MonitorDelSistema
 	    while (true)
 	    {
 		/*
-                Aquí se muestra una ventana de ejemplo. Se actualizan los datos 
-                en función de la frecuencia de actualización establecida por el 
-                jslider.
-		 */
+		Aquí se muestra una ventana de ejemplo. Se actualizan los datos 
+		 en función de la frecuencia de actualización establecida por el 
+		jslider.
+	    	 */
 
 		ventanaHome.actualizarDatosSensorYCarga();
 
@@ -124,7 +77,7 @@ public class MonitorDelSistema
 	    }
 	} else
 	{
-	    master.mostrarDatos(1000);
+	    master.mostrarDatos(1000); //salida por consola
 	}
 
     }
@@ -167,6 +120,32 @@ public class MonitorDelSistema
 	return moni;
     }
 
+    private static void demo()
+    {
+	int sel;
+	Scanner s = new Scanner(System.in);
+
+	imprimirMenuDemos();
+
+	sel = s.nextInt();
+
+	while (sel >= 1 && sel <= 3)
+	{
+
+	    callProposiciones(sel);
+
+	    System.out.println("\n\n");
+
+	    imprimirMenuDemos();
+
+	    System.out.println("Presione una opción para probar otra demo");
+	    System.out.println("Cualquier otra tecla para SysMo");
+	    sel = s.nextInt();
+
+
+	}
+    }
+
     private static void imprimirMenuDemos()
     {
 	System.out.println("MENU DEMOS");
@@ -174,4 +153,26 @@ public class MonitorDelSistema
 	System.out.println("2. Refresco de datos");
 	System.out.println("3. Verificador JSON");
     }
+
+    private static void callProposiciones(int sel)
+    {
+	switch (sel)
+	{
+	    case 1:
+		AlertaSwap.alerta();
+		break;
+	    case 2:
+		System.out.println("Ingrese tiempo de refresco");
+		int d = new Scanner(System.in).nextInt();
+		DataRefresh.refrescarDatosCada(d);
+		break;
+	    case 3:
+		System.out.println("Ingrese String");
+		String x = new Scanner(System.in).next();
+		VerificadorJSON.validaJSON(String.valueOf(x));
+		break;
+
+	}
+    }
+
 }
