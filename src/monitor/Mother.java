@@ -5,10 +5,8 @@
  */
 package monitor;
 
-
 import oshi.hardware.Baseboard;
 import oshi.hardware.ComputerSystem;
-import oshi.hardware.common.AbstractBaseboard;
 import oshi.hardware.common.AbstractHardwareAbstractionLayer;
 
 /**
@@ -29,9 +27,9 @@ public abstract class Mother implements iMother
     {
 	ComputerSystem cs = hardAbs.getComputerSystem(); //Esto me permite obtener la placa madre
 
-	mother=cs.getBaseboard();
+	mother = cs.getBaseboard();
     }
-    
+
     @Override
     public String getMarcaMother()
     {
@@ -42,18 +40,25 @@ public abstract class Mother implements iMother
     public String getModeloMother()
     {
 	return mother.getModel() + " - " + mother.getVersion(); //Esto quizás se pueda modularizar
-       
-     // en mis dos pc solo muestra el modelo del mother, 6 7 caracteres no mas.
-     //si no puedo hacer un metodo aparte que sea getVersion,lo charlamos.
+
+	// en mis dos pc solo muestra el modelo del mother, 6 7 caracteres no mas.
+	//si no puedo hacer un metodo aparte que sea getVersion,lo charlamos.
     }
 
     @Override
-    public String ToJson() {
-       
-       return String.format("{\"Marca\":%s,\"Modelo\":%s}",this.getMarcaMother(),this.getModeloMother());
-    
+    public String ToJson()
+    {
+
+	return String.format("{\"Marca\":%s,\"Modelo\":%s}", this.getMarcaMother(), this.getModeloMother());
+
     }
-    
-    
+
+    @Override
+    public String toString()
+    {
+	
+	return "Marca: " + getMarcaMother() + "\n"
+		+ "Modelo :" + getModeloMother();
+    }
 
 }

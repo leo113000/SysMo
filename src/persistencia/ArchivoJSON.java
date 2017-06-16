@@ -20,7 +20,6 @@ import java.util.Date;
 public class ArchivoJSON extends ArchivoTexto {
     
     private String json;
-   // private String ruta=System.getProperty("user.dir")+"MonitorDeSistema"+String.valueOf(new Date())+".json";
 
    
     
@@ -29,7 +28,7 @@ public class ArchivoJSON extends ArchivoTexto {
         this.json=Js;
     }
     
-      public void Create() throws IOException{
+      public void create() throws IOException{
          this.Write(this.json);
           
       }

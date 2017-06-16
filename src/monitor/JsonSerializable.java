@@ -11,6 +11,6 @@ package monitor;
  */
 public interface JsonSerializable {
     
-    public String ToJson();
+    String ToJson();
     
 }

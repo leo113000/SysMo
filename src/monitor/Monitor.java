@@ -7,6 +7,7 @@ package monitor;
 
 import java.util.ArrayList;
 
+
 /**
  *
  * @author turin
@@ -15,38 +16,42 @@ public abstract class Monitor implements JsonSerializable
 {
 
     iCPU cpuMonitor;
-    iGPU gpuMonitor;
     iMemoria memMonitor;
     iMother motherMonitor;
     iOS osMonitor;
     iNetworking networkingMonitor;
     iSensores sensMonitor;
     ArrayList<JsonSerializable> serializables;
+    
+    iGPU gpuMonitor;
+    
+    
 
     public Monitor(iCPU cpuMonitor, iGPU gpuMonitor, iMemoria memMonitor, iMother motherMonitor, iNetworking nicMonitor, iOS osMonitor, iSensores sensMonitor)
     {
 	this.cpuMonitor = cpuMonitor;
-	this.gpuMonitor = gpuMonitor;
 	this.memMonitor = memMonitor;
 	this.motherMonitor = motherMonitor;
 	this.osMonitor = osMonitor;
 	this.networkingMonitor = nicMonitor;
-	//chequeen este try.choto pero para que no pase nada raro
-        try{
-            this.sensMonitor = sensMonitor;
-        }
-        catch(Exception e){
-            this.sensMonitor=null;
-            System.out.println("---ERROR SENSORS");
-             throw e;
-        
-    }
-        //aca corta :)
 	
-        serializables = new ArrayList();
+	try
+	{
+	    this.sensMonitor = sensMonitor;
+	} catch (Exception e)
+	{
+	    this.sensMonitor = null;
+	    System.out.println("---ERROR SENSORS");
+	    throw e;
+
+	}
+
+	serializables = new ArrayList();
+	
+	this.gpuMonitor=gpuMonitor;
 
     }
-
+    
     public iCPU getCpuMonitor()
     {
 	return cpuMonitor;
@@ -56,8 +61,7 @@ public abstract class Monitor implements JsonSerializable
     {
 	return gpuMonitor;
     }
-    
-    
+
     public iMemoria getMemMonitor()
     {
 	return memMonitor;
@@ -92,13 +96,12 @@ public abstract class Monitor implements JsonSerializable
 	this.serializables.add(this.networkingMonitor);
 	this.serializables.add(this.osMonitor);
 	this.serializables.add(this.sensMonitor);
-        
-    for(JsonSerializable js:serializables){
-        
-        System.out.println(js.ToJson());
-    }
 
-	
+	for (JsonSerializable js : serializables)
+	{
+
+	    System.out.println(js.ToJson());
+	}
 
     }
 
@@ -106,8 +109,99 @@ public abstract class Monitor implements JsonSerializable
     public String ToJson()
     {
 
-	return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s,\"Gpu\".%s}", this.cpuMonitor.ToJson(), this.memMonitor.ToJson(), this.motherMonitor.ToJson(), this.networkingMonitor.ToJson(), this.osMonitor.ToJson(), this.sensMonitor.ToJson(),this.getGpuMonitor().ToJson());
+	return String.format("{\"Cpu\":%s,\"Memoria\":%s,\"Mother\":%s,\"NIC\":%s,\"OS\":%s,\"Sensores\":%s,\"Gpu\".%s}", this.cpuMonitor.ToJson(), this.memMonitor.ToJson(), this.motherMonitor.ToJson(), this.networkingMonitor.ToJson(), this.osMonitor.ToJson(), this.sensMonitor.ToJson(), this.getGpuMonitor().ToJson());
 
     }
+    
+    
+    
+    public void mostrarDatos(Integer refresco)
+    {
 
+	System.out.println("\n");
+	
+	System.out.println(osMonitor);
+
+	System.out.println("\n");
+	System.out.println("CPU:");
+	System.out.println(cpuMonitor);
+
+	System.out.println("\n");
+
+	System.out.println("Memoria:");
+
+	System.out.println(memMonitor);
+
+	System.out.println("\n");
+
+	System.out.println("Motherboard");
+	System.out.println(motherMonitor);
+
+	System.out.println("\n");
+
+	System.out.println("Network");
+	System.out.println(networkingMonitor);
+
+	System.out.println("\n");
+
+	System.out.println("GPU");
+	
+	Thread pepe;
+	
+	System.out.println(gpuMonitor);
+
+	System.out.println("\n");
+
+	System.out.println("\t\t\t ----Real Time Data---- \n");
+	while (true)
+	{
+	    System.out.print("\r                                                               ");
+	    //La linea de arriba borra la linea con la información anterior para que no quede mal la impresión
+	    System.out.print("\rUso Actual: " + getCpuMonitor().getUsoActualCPU() + "%");
+	    System.out.print(" - ");
+	    System.out.print("Temp CPU: " + getSensMonitor().getTempCPU());
+	    System.out.print(" - ");
+	    System.out.print("Memoria en uso: " + getMemMonitor().getMemFisicaUso() + "Mb");
+
+	    try
+	    {
+		Thread.sleep(refresco);
+	    } catch (InterruptedException ex)
+	    {
+
+	    }
+
+	}
+    }
+    
+    public ArrayList<String> toCSV()
+    {
+	ArrayList<String> s=new ArrayList<>();
+	
+	s.add(osMonitor.getFabricanteOS() + " " +  osMonitor.getFamiliaOS());
+	s.add(osMonitor.getVersionOS());
+	
+	s.add(cpuMonitor.getFabricanteCPU());
+	s.add(cpuMonitor.getNucleosFisicosCPU().toString());
+	s.add(cpuMonitor.getNucleosLogicosCPU().toString());
+	s.add(cpuMonitor.getArquitecturaCPU());
+	
+	s.add(gpuMonitor.getManufacturer());
+	s.add(gpuMonitor.getModel());
+	
+	s.add(memMonitor.getMemFisicaTotal() + "Mb");
+	s.add(memMonitor.getMemSwapTotal() + "Mb");
+	
+	s.add(motherMonitor.getMarcaMother());
+	s.add(motherMonitor.getModeloMother());
+	
+	for(iNIC inic: networkingMonitor.getNics())
+	{
+	    s.add(inic.getIPv4());
+	    s.add(inic.getNombre());
+	    s.add(inic.getMACAddress());
+	}
+	
+	return s;
+    }
 }

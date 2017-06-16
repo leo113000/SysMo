@@ -12,38 +12,57 @@ import java.io.IOException;
  *
  * @author dario
  */
-public class ArchivoTexto {
+public class ArchivoTexto
+{
+
     protected FileWriter file;
     protected String extention;
-    
-    public ArchivoTexto(){
-        this.extention=".txt";
+
+    public ArchivoTexto()
+    {
+	this.extention = ".txt";
     }
-    public ArchivoTexto(String path) throws IOException{
-        try{
-        file=new FileWriter(path);
-        }
-        catch(IOException e){
-            System.out.println("---Create File Error---");
-            throw e;
-        }
-    
+
+    public ArchivoTexto(String path) throws IOException
+    {
+	try
+	{
+	    file = new FileWriter(path);
+	} catch (IOException e)
+	{
+	    System.out.println("---Create File Error---");
+	    throw e;
+	}
+
     }
-    public void Write(String contain) throws IOException{
-       try{ 
-        file.append(contain);
-       }
-       catch(IOException e){
-           System.out.println("---Write Error---");
-           throw e;
-           
-       }
-       
-           file.flush();
-           file.close();
-       
+
+    public void Write(String contain) throws IOException
+    {
+	try
+	{
+	    file.append(contain);
+	} catch (IOException e)
+	{
+	    System.out.println("---Write Error---");
+	    throw e;
+
+	}
+
+	file.flush();
+	file.close();
+
     }
-    
-    
-     
+
+    public void cerrarArchivo()
+    {
+	try
+	{
+	    file.flush();
+	    file.close();
+	} catch (Exception e)
+	{
+	    System.out.println("ERROR AL CERRAR ARCHIVO");
+	}
+    }
+
 }
